@@ -19,6 +19,11 @@ router.post("/login", function(req, res) {
     console.log('success');
 });
 
+// need to add a user placeholder to this route
+router.get('/renter', function(req, res) {
+    res.render('renter.handlebars');
+});
+
 router.use(function(req, res) {
     res.render('login.handlebars');
 });
