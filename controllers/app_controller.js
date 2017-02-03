@@ -21,11 +21,11 @@ router.post("/login", function(req, res) {
 
 // need to add a user placeholder to this route
 router.get('/renter', function(req, res) {
-    res.render('renter.handlebars');
+    res.render('renter.handlebars', { title: 'TMS | Rentals' });
 });
 
 router.use(function(req, res) {
-    res.render('login.handlebars');
+    res.render('login.handlebars', { title: 'TMS | Welcome' });
 });
 
 // Export routes for server.js to use.
