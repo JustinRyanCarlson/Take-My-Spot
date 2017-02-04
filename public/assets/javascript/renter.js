@@ -1,9 +1,8 @@
 function initMap() {
-    var myLatLng = { lat: 41.881832, lng: -87.623177 };
-
+    // Initialization of map at Chicago
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
-        center: myLatLng
+        center: { lat: 41.878669, lng: -87.632294 }
     });
     var infoWindow = new google.maps.InfoWindow({ map: map });
 
@@ -28,7 +27,6 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
-
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
