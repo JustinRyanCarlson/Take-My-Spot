@@ -1,13 +1,34 @@
 module.exports = function(sequelize, DataTypes) {
     var Owners = sequelize.define("owners", {
-        address: {
+        name: {
             type: DataTypes.STRING,
-            primaryKey: true,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
+        price: {
+            type: DataTypes.DECIMAL(10,2),
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        availability: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.DATE,
+            allowNull: true
+        },
+        parkingAddress: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        rating: {
+            type: DataTypes.INTEGER
+        },       
         0: {
             type: DataTypes.BOOLEAN,
             allowNull: false,

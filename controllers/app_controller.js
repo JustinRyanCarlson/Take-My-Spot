@@ -7,7 +7,6 @@ var script = {
     renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script>'
 };
 
-
 // ROUTES
 
 router.post("/newuser", function(req, res) {
@@ -31,12 +30,35 @@ router.get('/renter', function(req, res) {
 
 // need to add a user placeholder to this route
 router.get('/owner', function(req, res) {
-    res.render('owner.handlebars', { title: 'TMS | Owner', scripts: script.owner });
+    db.owners.findAll({}).then(function(dbresp) {
+        res.render('owner.handlebars', { title: 'TMS | Owner', scripts: script.owner, owners: dbresp });
+    });
+    
 });
 
+
+
+// owner model routes -------------------------------------------------------------------------
+// router.get("/", function(req, res) {
+
+//     db.owners.findAll({}).then(function(dbresp) {
+//         res.render("owner", { title: 'TMS | Owner', scripts: script.owner }, {
+//             owners: dbresp
+//         });
+//     });
+// });
+
+// router.post("/", function(req, res) {
+//     db.owners.create(req.body).then(function(dbRes) {
+//         res.redirect("/");
+//     });
+// });
+
+// --------------------------------------put this last---------------------------------
 router.use(function(req, res) {
     res.render('login.handlebars', { title: 'TMS | Welcome', scripts: script.login });
 });
+
 
 // Export routes for server.js to use.
 module.exports = router;
