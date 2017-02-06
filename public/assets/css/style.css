@@ -59,3 +59,32 @@ body {
     height: 20px;
     margin-bottom: 2px;
 }
+
+
+/*navbar*/
+
+.item-padding {
+    padding: 15px 10px !important;
+}
+
+.nav-margin-item {
+    margin-left: 10px;
+}
+
+nav {
+    background-color: #e3f2fd;
+    margin-bottom: 0px !important;
+    bottom-border: 10px solid auto;
+    border-color: black;
+}
+
+
+/*footer*/
+
+footer {
+    background-color: #F7F7F7;
+}
+
+.footer-padding {
+    padding: 10px 0px;
+}

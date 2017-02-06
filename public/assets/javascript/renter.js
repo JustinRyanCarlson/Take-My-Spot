@@ -75,8 +75,8 @@ function locations() {
         lon: '-87.635435'
     }];
 
-    db.owners.findAll({}).then(function(data) {
-        res.render('index.handlebars', { burgers: data });
-    });
+    // db.owners.findAll({}).then(function(data) {
+    //     res.render('index.handlebars', { burgers: data });
+    // });
     return locations;
 }
