@@ -10,7 +10,7 @@ var script = {
 
 // ROUTES
 
-router.post("/newuser", function(req, res) {
+router.post("/newuser", function (req, res) {
     console.log(req.body);
     db.users.create({
         email: req.body.email,
@@ -20,12 +20,19 @@ router.post("/newuser", function(req, res) {
     });
 });
 
-router.post("/login", function(req, res) {
+router.post("/login", function (req, res) {
     console.log('success');
 });
 
+router.get("/login", function (req, res) {
+    res.render('login.handlebars', {
+        title: 'TMS | Login',
+        scripts: script.login
+    });
+});
+
 // need to add a user placeholder to this route
-router.get('/renter', function(req, res) {
+router.get('/renter', function (req, res) {
     res.render('renter.handlebars', {
         title: 'TMS | Rentals',
         scripts: script.renter
@@ -33,7 +40,7 @@ router.get('/renter', function(req, res) {
 });
 
 // need to add a user placeholder to this route
-router.get('/owner', function(req, res) {
+router.get('/owner', function (req, res) {
     res.render('owner.handlebars', {
         title: 'TMS | Owner',
         scripts: script.owner
@@ -52,8 +59,8 @@ router.get('/owner', function(req, res) {
 //     });
 // });
 
-router.post("/", function(req, res) {
-    geocoder.geocode(req.body.address, function(err, data) {
+router.post("/", function (req, res) {
+    geocoder.geocode(req.body.address, function (err, data) {
         db.Owners.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
@@ -64,7 +71,7 @@ router.post("/", function(req, res) {
             price: req.body.price,
             monday: req.body.monday,
             0: req.body.zero
-        }).then(function(dbRes) {
+        }).then(function (dbRes) {
             // res.json(dbRes);
             res.redirect("/");
         });
@@ -73,8 +80,8 @@ router.post("/", function(req, res) {
 });
 
 // --------------------------------------put this last---------------------------------
-router.use(function(req, res) {
-    res.render('login.handlebars', {
+router.use(function (req, res) {
+    res.render('landingPage.handlebars', {
         title: 'TMS | Welcome',
         scripts: script.login
     });
