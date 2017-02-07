@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+var geocoder = require('geocoder');
 var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
     owner: '<script src="javascript/owner.js" type="text/javascript"></script>',
@@ -52,19 +53,23 @@ router.get('/owner', function(req, res) {
 // });
 
 router.post("/", function(req, res) {
-    console.log(req.body);
-    db.Owners.create({
-        zipcode: req.body.zipcode,
-        address: req.body.address,
-        city: req.body.city,
-        state: req.body.state,
-        price: req.body.price,
-        monday: req.body.monday,
-        0: req.body.zero
-    }).then(function(dbRes) {
-        // res.json(dbRes);
-        res.redirect("/");
+    geocoder.geocode(req.body.address, function(err, data) {
+        db.Owners.create({
+            zipcode: req.body.zipcode,
+            address: req.body.address,
+            city: req.body.city,
+            longitude: data.results[0].geometry.location.lng,
+            latitude: data.results[0].geometry.location.lat,
+            state: req.body.state,
+            price: req.body.price,
+            monday: req.body.monday,
+            0: req.body.zero
+        }).then(function(dbRes) {
+            // res.json(dbRes);
+            res.redirect("/");
+        });
     });
+
 });
 
 // --------------------------------------put this last---------------------------------
