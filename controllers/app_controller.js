@@ -39,18 +39,6 @@ router.get('/owner', function(req, res) {
     });
 });
 
-
-
-// owner model routes -------------------------------------------------------------------------
-// router.get("/", function(req, res) {
-
-//     db.owners.findAll({}).then(function(dbresp) {
-//         res.render("owner", { title: 'TMS | Owner', scripts: script.owner }, {
-//             owners: dbresp
-//         });
-//     });
-// });
-
 router.post("/", function(req, res) {
     console.log(req.body);
     db.owners.create({
@@ -60,7 +48,36 @@ router.post("/", function(req, res) {
         state: req.body.state,
         price: req.body.price,
         monday: req.body.monday,
-        0: req.body.zero
+        tuesday: req.body.monday,
+        wednesday: req.body.monday,
+        thursday: req.body.monday,
+        friday: req.body.monday,
+        saturday: req.body.monday,
+        sunday: req.body.monday,
+        0: req.body.zero,
+        1: req.body.one,
+        2: req.body.two,
+        3: req.body.three,
+        4: req.body.four,
+        5: req.body.five,
+        6: req.body.six,
+        7: req.body.seven,
+        8: req.body.eight,
+        9: req.body.nine,
+        10: req.body.ten,
+        11: req.body.eleven,
+        12: req.body.twelve,
+        13: req.body.thirteen,
+        14: req.body.fourteen,
+        15: req.body.fifteen,
+        16: req.body.sixteen,
+        17: req.body.seventeen,
+        18: req.body.eighteen,
+        19: req.body.nineteen,
+        20: req.body.twenty,
+        21: req.body.twentyone,
+        22: req.body.twentytwo,
+        23: req.body.twentythree
     }).then(function(dbRes) {
         // res.json(dbRes);
         res.redirect("/");
