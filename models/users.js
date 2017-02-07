@@ -1,8 +1,8 @@
-module.exports = function (sequelize, DataTypes) {
-    var Users = sequelize.define("users", {
+module.exports = function(sequelize, DataTypes) {
+    var Users = sequelize.define("Users", {
         email: {
             type: DataTypes.STRING,
-            primaryKey: true,
+            unique: true,
             allowNull: false,
             validate: {
                 len: [1]
@@ -27,6 +27,14 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1]
+            }
+        }
+    }, {
+        classMethods: {
+            associate: function(models) {
+                // Associating Author with Posts
+                
+                Users.hasMany(models.Owners, {onDelete: "cascade"});
             }
         }
     });

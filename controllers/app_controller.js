@@ -53,7 +53,7 @@ router.get('/owner', function(req, res) {
 
 router.post("/", function(req, res) {
     console.log(req.body);
-    db.owners.create({
+    db.Owners.create({
         zipcode: req.body.zipcode,
         address: req.body.address,
         city: req.body.city,
