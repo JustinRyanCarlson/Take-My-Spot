@@ -1,27 +1,28 @@
 {
-    "name": "Take-My-Spot",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/JustinRyanCarlson/Take-My-Spot.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/JustinRyanCarlson/Take-My-Spot/issues"
-    },
-    "homepage": "https://github.com/JustinRyanCarlson/Take-My-Spot#readme",
-    "dependencies": {
-        "body-parser": "^1.16.0",
-        "express": "^4.14.1",
-        "express-handlebars": "^3.0.0",
-        "mysql": "^2.13.0",
-        "sequelize": "^3.30.1"
-    }
+  "name": "Take-My-Spot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinRyanCarlson/Take-My-Spot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinRyanCarlson/Take-My-Spot/issues"
+  },
+  "homepage": "https://github.com/JustinRyanCarlson/Take-My-Spot#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "geocode": "0.0.3",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.1"
+  }
 }
