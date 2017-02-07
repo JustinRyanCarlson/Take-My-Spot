@@ -9,7 +9,7 @@ var script = {
 
 // ROUTES
 
-router.post("/newuser", function(req, res) {
+router.post("/newuser", function (req, res) {
     console.log(req.body);
     db.users.create({
         email: req.body.email,
@@ -19,21 +19,24 @@ router.post("/newuser", function(req, res) {
     });
 });
 
-router.post("/login", function(req, res) {
+router.post("/login", function (req, res) {
     console.log('success');
 });
 
 // need to add a user placeholder to this route
-router.get('/renter', function(req, res) {
-    res.render('renter.handlebars', { title: 'TMS | Rentals', scripts: script.renter });
+router.get('/renter', function (req, res) {
+    res.render('renter.handlebars', {
+        title: 'TMS | Rentals',
+        scripts: script.renter
+    });
 });
 
 // need to add a user placeholder to this route
-router.get('/owner', function(req, res) {
-    db.owners.findAll({}).then(function(dbresp) {
-        res.render('owner.handlebars', { title: 'TMS | Owner', scripts: script.owner, owners: dbresp });
+router.get('/owner', function (req, res) {
+    res.render('owner.handlebars', {
+        title: 'TMS | Owner',
+        scripts: script.owner
     });
-    
 });
 
 
@@ -48,15 +51,23 @@ router.get('/owner', function(req, res) {
 //     });
 // });
 
-// router.post("/", function(req, res) {
-//     db.owners.create(req.body).then(function(dbRes) {
-//         res.redirect("/");
-//     });
-// });
+router.post("/", function (req, res) {
+    console.log(req.body);
+    // db.owners.create({
+    //     name: req.body.name,
+    //     price: req.body.price
+    // }).then(function (dbRes) {
+    //     // res.json(dbRes);
+    //     res.redirect("/");
+    // });
+});
 
 // --------------------------------------put this last---------------------------------
-router.use(function(req, res) {
-    res.render('login.handlebars', { title: 'TMS | Welcome', scripts: script.login });
+router.use(function (req, res) {
+    res.render('login.handlebars', {
+        title: 'TMS | Welcome',
+        scripts: script.login
+    });
 });
 
 

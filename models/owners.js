@@ -1,34 +1,83 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Owners = sequelize.define("owners", {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
         price: {
-            type: DataTypes.DECIMAL(10,2),
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        availability: {
+        monday: {
             // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
-            type: DataTypes.DATE,
-            allowNull: true
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         },
-        parkingAddress: {
+        tuesday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        wednesday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        thursday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        friday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        saturday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        sunday: {
+            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        zipcode: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        rating: {
-            type: DataTypes.INTEGER
-        },       
+        city: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+
         0: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
