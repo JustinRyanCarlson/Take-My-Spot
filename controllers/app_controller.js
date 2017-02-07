@@ -53,13 +53,18 @@ router.get('/owner', function (req, res) {
 
 router.post("/", function (req, res) {
     console.log(req.body);
-    // db.owners.create({
-    //     name: req.body.name,
-    //     price: req.body.price
-    // }).then(function (dbRes) {
-    //     // res.json(dbRes);
-    //     res.redirect("/");
-    // });
+    db.owners.create({
+        zipcode: req.body.zipcode,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        price: req.body.price,
+        monday: req.body.monday,
+        0: req.body.zero
+    }).then(function (dbRes) {
+        // res.json(dbRes);
+        res.redirect("/");
+    });
 });
 
 // --------------------------------------put this last---------------------------------

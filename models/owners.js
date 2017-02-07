@@ -77,6 +77,20 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
+        longitude: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        latitude: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
 
         0: {
             type: DataTypes.BOOLEAN,
