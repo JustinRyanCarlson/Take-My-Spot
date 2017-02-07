@@ -76,7 +76,7 @@ function locations() {
     }];
 
     // db.owners.findAll({}).then(function(data) {
-    //     res.render('index.handlebars', { burgers: data });
+    //     res.render('index.handlebars', { records: data });
     // });
     return locations;
 }
