@@ -1,7 +1,7 @@
 function initMap() {
     // Initialization of map at Chicago
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 15,
         center: { lat: 41.878669, lng: -87.632294 }
     });
     var infoWindow = new google.maps.InfoWindow({ map: map });
