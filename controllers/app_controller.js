@@ -42,19 +42,19 @@ router.get('/owner', function(req, res) {
 
 router.post("/", function(req, res) {
     console.log(req.body);
-    db.owners.create({
+    db.Owners.create({
         zipcode: req.body.zipcode,
         address: req.body.address,
         city: req.body.city,
         state: req.body.state,
         price: req.body.price,
         monday: req.body.monday,
-        tuesday: req.body.monday,
-        wednesday: req.body.monday,
-        thursday: req.body.monday,
-        friday: req.body.monday,
-        saturday: req.body.monday,
-        sunday: req.body.monday,
+        tuesday: req.body.tuesday,
+        wednesday: req.body.wednesday,
+        thursday: req.body.thursday,
+        friday: req.body.friday,
+        saturday: req.body.saturday,
+        sunday: req.body.sunday,
         0: req.body.zero,
         1: req.body.one,
         2: req.body.two,
@@ -83,9 +83,10 @@ router.post("/", function(req, res) {
         // res.json(dbRes);
         res.redirect("/");
     });
-});    
+});
 
-geocoder.geocode(req.body.address, function(err, data) {
+router.post("/", function(req, res) {
+    geocoder.geocode(req.body.address, function(err, data) {
         db.Owners.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
@@ -93,15 +94,13 @@ geocoder.geocode(req.body.address, function(err, data) {
             longitude: data.results[0].geometry.location.lng,
             latitude: data.results[0].geometry.location.lat,
             state: req.body.state,
-            price: req.body.price,
-            monday: req.body.monday,
-            0: req.body.zero
+            price: req.body.price
         }).then(function(dbRes) {
             // res.json(dbRes);
             res.redirect("/");
         });
     });
-
+});
 
 
 // --------------------------------------put this last---------------------------------

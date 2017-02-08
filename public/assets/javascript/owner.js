@@ -1,3 +1,37 @@
+// $(document).keypress(function(e) {
+//     if (e.which == 13) {
+//         $('#login').trigger('click');
+//     }
+// });
+
+
+
+
+// $('#submitbtn').on('click', function() {
+    
+//         var parking = {
+//             zipcode: $('#zipcode').val().trim(),
+//         address: $('#address').val().trim(),
+//         city: $('#city').val().trim(),
+//         state: $('#state').val().trim(),
+//         price: $('#price').val().trim(),
+//         monday: $('input[type=checkbox]:checked').val(),
+//         tuesday: $("#tuesday").prop('checked'),
+//         wednesday: $("#wednesday").prop('checked'),
+//         thursday: $("#thursday").prop(':checked'),
+//         friday: $("#friday").is(":checked"),
+//         saturday: $("#saturday").is(":checked"),
+//         sunday: $("#sunday").is(":checked"),
+//         0: $("#zero").is(":checked")
+//         };
+
+//         $.post('/owner', parking, function(status) {
+//             window.location.href = '/';
+//         });
+// });
+
+
+
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 

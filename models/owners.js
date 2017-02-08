@@ -8,43 +8,37 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         monday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
+                  
         },
         tuesday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         wednesday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         thursday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         friday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         saturday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         sunday: {
-            // Will there be an instance in which an owner will not have any available spot, but will store his parking address for future availabilities?
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
