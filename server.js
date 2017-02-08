@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var exphbs = require("express-handlebars");
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 var PORT = process.env.PORT || 8000;
 
 // Requiring our models for syncing
@@ -19,8 +20,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-
 app.use(express.static(__dirname + '/public/assets'));
+app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
 
 // Requires the routes from the app_controller.js file and sets the middleware
 // to use these routes.
