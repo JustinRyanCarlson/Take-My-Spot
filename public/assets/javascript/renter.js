@@ -35,48 +35,41 @@ function initMap() {
             'Error: Your browser doesn\'t support geolocation.');
     }
 
+    // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
+    $.get('/api/locations', function(data) {
+        // Create all markers for rentals
+        var allMarkers = data;
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
 
+        for (i = 0; i < allMarkers.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(allMarkers[i].latitude, allMarkers[i].longitude),
+                map: map,
+                icon: 'img/gapps_parking.png'
+            });
 
-    // Create all markers for rentals
-    var allMarkers = locations();
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    var content = "Address: " + allMarkers[i].address + "<br>" +
+                        "City: " + allMarkers[i].city + "<br>" +
+                        "Rate: $" + allMarkers[i].price + "/hr<br>" +
+                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button>";
 
-    for (i = 0; i < allMarkers.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(allMarkers[i].lat, allMarkers[i].lon),
-            map: map
-        });
-
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                infowindow.setContent(allMarkers[i].name);
-                infowindow.open(map, marker);
-            };
-        })(marker, i));
-    }
-
+                    infowindow.setContent(content);
+                    infowindow.open(map, marker);
+                };
+            })(marker, i));
+        }
+    });
 }
 
-// this will be a sequelize query for all records lat long
-function locations() {
-    var locations = [{
-        name: 'Northwestern SoPS',
-        lat: '41.896529',
-        lon: '-87.618727'
-    }, {
-        name: 'Jay Pritzker Pavilion',
-        lat: '41.883159',
-        lon: '-87.621892'
-    }, {
-        name: 'theMART',
-        lat: '41.888512',
-        lon: '-87.635435'
-    }];
 
-    // db.owners.findAll({}).then(function(data) {
-    //     res.render('index.handlebars', { records: data });
-    // });
-    return locations;
-}
+
+$(document.body).on('click', '.property', function() {
+    var route = "/renter/property/" + $(this).attr("data-id");
+    $.get(route, function() {
+
+    });
+});

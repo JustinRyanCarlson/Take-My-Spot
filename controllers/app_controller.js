@@ -40,7 +40,22 @@ router.get('/owner', function(req, res) {
     });
 });
 
+router.get('/api/locations', function(req, res) {
+    db.Owners.findAll({}).then(function(data) {
+        res.json(data);
+    });
+});
 
+router.get('/renter/property/:id', function(req, res) {
+    db.Owners.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(data) {
+        // this gives all info in the DB for the entry clicked
+        console.log(data.dataValues);
+    });
+});
 
 // owner model routes -------------------------------------------------------------------------
 // router.get("/", function(req, res) {
