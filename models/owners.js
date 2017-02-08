@@ -80,122 +80,122 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
 
-        0: {
+        zero: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        1: {
+        one: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        2: {
+        two: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        3: {
+        three: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        4: {
+        four: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        5: {
+        five: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        6: {
+        six: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        7: {
+        seven: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        8: {
+        eight: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        9: {
+        nine: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        10: {
+        ten: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        11: {
+        eleven: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        12: {
+        twelve: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        13: {
+        thirteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        14: {
+        fourteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        15: {
+        fifteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        16: {
+        sixteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        17: {
+        seventeen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        18: {
+        eighteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        19: {
+        nineteen: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        20: {
+        twenty: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        21: {
+        twentyone: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        22: {
+        twentytwo: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        23: {
+        twentythree: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
