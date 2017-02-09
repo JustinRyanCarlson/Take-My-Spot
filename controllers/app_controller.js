@@ -13,11 +13,12 @@ var script = {
 
 //passport
 router.post('/register', function(req, res) {
-    db.Users.register(req.body.username, req.body.password, function(err, user) {
+    db.Users.register(req.body.email, req.body.password, function(err, user) {
         if (err) {
 
             return res.json(err);
         }
+        console.log(user);
         res.json(user);
     });
 });
@@ -28,7 +29,8 @@ router.post('/login', passport.authenticate('local', {
     function(req, res) {
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
-        res.json(req.user);
+        // res.json(req.user);
+        res.redirect('/renter');
     });
 
 
