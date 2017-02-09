@@ -29,12 +29,13 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         }
-    }, {
-        classMethods: {
-            associate: function(models) {
+}, {        classMethods: {
+            associate: function (models) {
                 // Associating Author with Posts
-                
-                Users.hasMany(models.Owners, {onDelete: "cascade"});
+
+                Users.hasMany(models.Owners, {
+                    onDelete: "cascade"
+                });
             }
         }
     });

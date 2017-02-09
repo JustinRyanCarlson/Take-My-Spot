@@ -24,6 +24,7 @@
     "geocode": "0.0.3",
     "geocoder": "^0.2.2",
     "mysql": "^2.13.0",
-    "sequelize": "^3.30.1"
+    "sequelize": "^3.30.1",
+    "serve-favicon": "^2.3.2"
   }
 }
