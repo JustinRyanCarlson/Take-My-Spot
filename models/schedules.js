@@ -1,86 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
-    var Owners = sequelize.define("Owners", {        
-        price: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        monday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-                  
-        },
-        tuesday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        wednesday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        thursday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        friday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        saturday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        sunday: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
-        zipcode: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        city: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        state: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        longitude: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        latitude: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1]
-            }
-        },
-
-        zero: {
+	var Schedules = sequelize.define("Schedules", {
+		days: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: {
+				len: [1]
+			}
+		},
+		 zero: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
@@ -200,16 +127,16 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: false
         }
-    }, {
+	}, {
         // We're saying that we want our Author to have Posts
         classMethods: {
             associate: function(models) {
                 // When we delete an Author, we'll also delete their Posts "cascade"
                 // An Author (foreignKey) is required or a Post can't be made
                 // console.log(models.Users);
-                Owners.belongsTo(models.Users);
+                Schedules.belongsTo(models.Properties);
             }
         }
-    });
-    return Owners;
+	});
+	return Schedules;
 };

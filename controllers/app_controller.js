@@ -32,6 +32,22 @@ router.get('/renter', function(req, res) {
     });
 });
 
+router.post('/renter', function(req, res) {
+    console.log(req.body);
+    db.Availabilities.create({
+
+    });
+});
+
+router.put('/renter/:id', function(req, res) {
+    db.Owners.delete({}, 
+    {
+        where: {
+            id: req.params.id
+        }
+    });
+});
+
 // need to add a user placeholder to this route
 router.get('/owner', function(req, res) {
     res.render('owner.handlebars', {
@@ -40,48 +56,17 @@ router.get('/owner', function(req, res) {
     });
 });
 
-router.post("/", function(req, res) {
+router.post("/owner", function(req, res) {
     console.log(req.body);
-    db.Owners.create({
+    db.Properties.create({
         zipcode: req.body.zipcode,
         address: req.body.address,
         city: req.body.city,
         state: req.body.state,
-        price: req.body.price,
-        monday: req.body.monday,
-        tuesday: req.body.tuesday,
-        wednesday: req.body.wednesday,
-        thursday: req.body.thursday,
-        friday: req.body.friday,
-        saturday: req.body.saturday,
-        sunday: req.body.sunday,
-        zero: req.body.zero,
-        one: req.body.one,
-        two: req.body.two,
-        three: req.body.three,
-        four: req.body.four,
-        five: req.body.five,
-        six: req.body.six,
-        seven: req.body.seven,
-        eight: req.body.eight,
-        nineine: req.body.nine,
-        ten: req.body.ten,
-        eleven: req.body.eleven,
-        twelve: req.body.twelve,
-        thirteen: req.body.thirteen,
-        fourteen: req.body.fourteen,
-        fifteen: req.body.fifteen,
-        sixteen: req.body.sixteen,
-        seventeen: req.body.seventeen,
-        eighteen: req.body.eighteen,
-        nineteen: req.body.nineteen,
-        twenty: req.body.twenty,
-        twentyone: req.body.twentyone,
-        twentytwo: req.body.twentytwo,
-        twentythree: req.body.twentythree
+        price: req.body.price
     }).then(function(dbRes) {
         // res.json(dbRes);
-        res.redirect("/");
+        res.redirect("/owner");
     });
 });
 
