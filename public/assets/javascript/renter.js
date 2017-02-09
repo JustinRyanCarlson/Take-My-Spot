@@ -52,10 +52,10 @@ function initMap() {
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    var content = "Address: " + allMarkers[i].address + "<br>" +
+                    var content = "<div class=text-google>Address: " + allMarkers[i].address + "<br>" +
                         "City: " + allMarkers[i].city + "<br>" +
                         "Rate: $" + allMarkers[i].price + "/hr<br>" +
-                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button>";
+                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button></div>";
 
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
