@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "P@20011989@m",
+        "password": null,
         "database": "take_my_spot_db",
         "host": "127.0.0.1",
         "dialect": "mysql"
