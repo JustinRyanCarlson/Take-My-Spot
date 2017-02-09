@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+var passport = require('passport');
 var geocoder = require('geocoder');
 var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
@@ -10,13 +11,35 @@ var script = {
 
 // ROUTES
 
+//passport
+router.post('/register', function(req, res) {
+    db.Users.register(req.body.username, req.body.password, function(err, user) {
+        if (err) {
+
+            return res.json(err);
+        }
+        res.json(user);
+    });
+});
+
+router.post('/login', passport.authenticate('local', {
+        failureRedirect: '/login'
+    }),
+    function(req, res) {
+        // If this function gets called, authentication was successful.
+        // `req.user` contains the authenticated user.
+        res.json(req.user);
+    });
+
+
+
+
+
 router.post("/newuser", function(req, res) {
     console.log(req.body);
     db.users.create({
         email: req.body.email,
-        password: req.body.password,
-        name: req.body.name,
-        phone: req.body.phone
+        password: req.body.password
     });
 });
 
@@ -52,7 +75,6 @@ router.get('/about', function(req, res) {
     });
 });
 
-// need to add a user placeholder to this route
 router.get('/owner', function(req, res) {
     res.render('owner.handlebars', {
         title: 'TMS | Owner',
@@ -77,15 +99,6 @@ router.get('/renter/property/:id', function(req, res) {
     });
 });
 
-// owner model routes -------------------------------------------------------------------------
-// router.get("/", function(req, res) {
-
-//     db.owners.findAll({}).then(function(dbresp) {
-//         res.render("owner", { title: 'TMS | Owner', scripts: script.owner }, {
-//             owners: dbresp
-//         });
-//     });
-// });
 
 router.post("/", function(req, res) {
     geocoder.geocode(req.body.address, function(err, data) {
@@ -111,7 +124,6 @@ router.post("/", function(req, res) {
 router.use(function(req, res) {
     res.render('landingPage.handlebars', {
         title: 'TMS | Welcome',
-        scripts: script.login
     });
 });
 
