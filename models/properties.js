@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Properties = sequelize.define("Properties", {        
+    var Properties = sequelize.define("Properties", {
         price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
@@ -50,9 +50,35 @@ module.exports = function(sequelize, DataTypes) {
                 // When we delete an Author, we'll also delete their Posts "cascade"
                 // An Author (foreignKey) is required or a Post can't be made
                 // console.log(models.Users);
-                Owners.belongsTo(models.Users);
+                Properties.belongsTo(models.Users);
+
             }
         }
+
+    }, {
+        // We're saying that we want our Author to have Posts
+        classMethods: {
+            associate: function(models) {
+                // When we delete an Author, we'll also delete their Posts "cascade"
+                // An Author (foreignKey) is required or a Post can't be made
+                // console.log(models.Users);
+                Properties.belongsTo(models.Schedules);
+
+            }
+        }
+
+    }, {
+        // We're saying that we want our Author to have Posts
+        classMethods: {
+            associate: function(models) {
+                // When we delete an Author, we'll also delete their Posts "cascade"
+                // An Author (foreignKey) is required or a Post can't be made
+                // console.log(models.Users);
+                Properties.hasMany(models.renters);
+
+            }
+        }
+
     });
     return Properties;
 };

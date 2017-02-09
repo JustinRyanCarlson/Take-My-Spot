@@ -32,21 +32,21 @@ router.get('/renter', function(req, res) {
     });
 });
 
-router.post('/renter', function(req, res) {
-    console.log(req.body);
-    db.Availabilities.create({
+// router.post('/renter', function(req, res) {
+//     console.log(req.body);
+//     db.Availabilities.create({
 
-    });
-});
+//     });
+// });
 
-router.put('/renter/:id', function(req, res) {
-    db.Owners.delete({}, 
-    {
-        where: {
-            id: req.params.id
-        }
-    });
-});
+// router.put('/renter/:id', function(req, res) {
+//     db.Owners.delete({}, 
+//     {
+//         where: {
+//             id: req.params.id
+//         }
+//     });
+// });
 
 // need to add a user placeholder to this route
 router.get('/owner', function(req, res) {
