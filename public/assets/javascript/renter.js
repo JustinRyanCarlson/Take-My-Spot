@@ -18,7 +18,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Current Location');
+            infoWindow.setContent('<div class=text-google>Current Location</div>');
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
