@@ -52,6 +52,8 @@ router.post("/login", function(req, res) {
 router.get("/login", function(req, res) {
     res.render('login.handlebars', {
         title: 'TMS | Login',
+        user: 'login',
+        loginurl: "/login",
         scripts: script.login
     });
 });
