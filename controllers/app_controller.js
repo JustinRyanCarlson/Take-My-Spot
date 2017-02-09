@@ -39,6 +39,13 @@ router.get('/renter', function (req, res) {
     });
 });
 
+router.get('/renterForm', function (req, res) {
+    res.render('renterForm.handlebars', {
+        title: 'TMS | Rentals Form',
+        scripts: script.renter
+    });
+});
+
 // need to add a user placeholder to this route
 router.get('/owner', function (req, res) {
     res.render('owner.handlebars', {
