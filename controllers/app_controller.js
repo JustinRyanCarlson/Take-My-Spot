@@ -4,8 +4,8 @@ var db = require("../models");
 var geocoder = require('geocoder');
 var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
-    owner: '<script src="javascript/owner.js" type="text/javascript"></script>',
-    renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script>'
+    owner: '<script src="javascript/owner.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
+    renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>'
 };
 
 // ROUTES
@@ -54,18 +54,18 @@ router.get('/owner', function (req, res) {
     });
 });
 
-router.get('/api/locations', function(req, res) {
-    db.Owners.findAll({}).then(function(data) {
+router.get('/api/locations', function (req, res) {
+    db.Owners.findAll({}).then(function (data) {
         res.json(data);
     });
 });
 
-router.get('/renter/property/:id', function(req, res) {
+router.get('/renter/property/:id', function (req, res) {
     db.Owners.findOne({
         where: {
             id: req.params.id
         }
-    }).then(function(data) {
+    }).then(function (data) {
         // this gives all info in the DB for the entry clicked
         console.log(data.dataValues);
     });
