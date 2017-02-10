@@ -11,7 +11,6 @@ var script = {
 
 // ROUTES
 
-//passport
 router.post('/register', function(req, res) {
     db.Users.register(req.body.email, req.body.password, function(err, user) {
         if (err) {
@@ -32,10 +31,6 @@ router.post('/login', passport.authenticate('local', {
         // res.json(req.user);
         res.redirect('/renter');
     });
-
-
-
-
 
 router.post("/newuser", function(req, res) {
     console.log(req.body);
