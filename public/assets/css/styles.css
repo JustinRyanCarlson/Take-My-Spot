@@ -524,3 +524,13 @@ img::-moz-selection {
 .purple-text {
     color: #6CB31C !important;
 }
+
+.btn-block {
+    background-color: transparent;
+    border: 1px white solid;
+}
+
+.btn-block:hover {
+    color: black;
+    background-color: white;
+}
