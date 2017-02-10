@@ -30,18 +30,27 @@
             <div class="navbar-collapse collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="nav-item nav-link" href="/renter">Renter</a>
+                        <a id="renter-text" class="nav-item nav-link" href="/renter">Renter</a>
                     </li>
                     <li>
-                        <a class="nav-item nav-link" href="/owner">Owner Form</a>
+                        <a id="owner-form-text" class="nav-item nav-link" href="/owner">Owner Form</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/about">About</a>
+                        <a id="about-us-text" class="page-scroll" href="/about">About Us</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{loginurl}}">{{user}}</a>
+                        <a>{{user}}</a>
+                    </li>
+                    <li>
+                        <a href="{{account-owner-url}}">{{account_owner}}</a>
+                    </li>
+                    <li>
+                        <a href="{{account-renter-url}}">{{account_renter}}</a>
+                    </li>
+                    <li>
+                        <a id="logout">{{logout}}</a>
                     </li>
                 </ul>
             </div>
@@ -61,10 +70,12 @@
                 <a target="_blank" href="https://github.com/terencero">Terence Ro</a>
                 <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
                 <a target="_blank" href="https://github.com/DePaulCubs77">Maria Garcia</a>
+                <span class="pull-right">Copyright &copy; 2017</span>
             </div>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="javascript/main.js"></script>
     <script src="javascript/theme/bootstrap.min.js"></script>
     <script src="javascript/theme/jquery.easing.min.js"></script>
     <script src="javascript/theme/jquery.min.js"></script>

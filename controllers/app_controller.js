@@ -6,19 +6,18 @@ var geocoder = require('geocoder');
 var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
     owner: '<script src="javascript/owner.js" type="text/javascript"></script>',
-    renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script>'
+    renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script>',
+    about: '<script src="javascript/about.js" type="text/javascript"></script>'
 };
 
 // ROUTES
 
 router.post('/register', function(req, res) {
-    db.Users.register(req.body.email, req.body.password, function(err, user) {
+    db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
         if (err) {
-
             return res.json(err);
         }
-        console.log(user);
-        res.json(user);
+        res.redirect('/login');
     });
 });
 
@@ -26,12 +25,16 @@ router.post('/login', passport.authenticate('local', {
         failureRedirect: '/login'
     }),
     function(req, res) {
-        // If this function gets called, authentication was successful.
-        // `req.user` contains the authenticated user.
         // res.json(req.user);
         console.log('loggedin');
         res.redirect('/renter');
     });
+
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
+        res.redirect('/login');
+    });
+});
 
 router.post("/newuser", function(req, res) {
     console.log(req.body);
@@ -46,12 +49,14 @@ router.post("/login", function(req, res) {
 });
 
 router.get("/login", function(req, res) {
-    res.render('login.handlebars', {
-        title: 'TMS | Login',
-        user: 'login',
-        loginurl: "/login",
-        scripts: script.login
-    });
+    if (req.user !== undefined) {
+        res.redirect('/renter');
+    } else {
+        res.render('login.handlebars', {
+            title: 'TMS | Login',
+            scripts: script.login
+        });
+    }
 });
 
 // need to add a user placeholder to this route
@@ -60,7 +65,11 @@ router.get('/renter', function(req, res) {
         console.log('user logged in', req.user);
         res.render('renter.handlebars', {
             title: 'TMS | Rentals',
-            scripts: script.renter
+            scripts: script.renter,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
         });
     } else {
         console.log('user not logged in');
@@ -68,24 +77,39 @@ router.get('/renter', function(req, res) {
     }
 });
 
-router.get('/renterForm', function(req, res) {
-    res.render('renterForm.handlebars', {
-        title: 'TMS | Rentals Form',
-        scripts: script.renter
-    });
-});
-
 router.get('/about', function(req, res) {
-    res.render('about.handlebars', {
-        title: 'TMS | About'
-    });
+    if (req.user !== undefined) {
+        res.render('about.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
+        });
+    } else {
+        res.render('about.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about
+        });
+    }
 });
 
 router.get('/owner', function(req, res) {
-    res.render('owner.handlebars', {
-        title: 'TMS | Owner',
-        scripts: script.owner
-    });
+    if (req.isAuthenticated()) {
+        console.log('user logged in', req.user);
+        res.render('owner.handlebars', {
+            title: 'TMS | Owner',
+            scripts: script.owner,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
+        });
+    } else {
+        console.log('user not logged in');
+        res.redirect('/loginerror');
+    }
 });
 
 router.get('/api/locations', function(req, res) {
@@ -107,7 +131,8 @@ router.get('/renter/property/:id', function(req, res) {
 
 
 router.post("/", function(req, res) {
-    geocoder.geocode(req.body.address, function(err, data) {
+    var address = req.body.address + ", " + req.body.city;
+    geocoder.geocode(address, function(err, data) {
         db.Owners.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
@@ -134,9 +159,21 @@ router.get('/loginerror', function(req, res) {
 
 // --------------------------------------put this last---------------------------------
 router.use(function(req, res) {
-    res.render('landingPage.handlebars', {
-        title: 'TMS | Welcome',
-    });
+    if (req.user !== undefined) {
+        res.render('landingPage.handlebars', {
+            title: 'TMS | Welcome',
+            scripts: script.login,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
+        });
+    } else {
+        res.render('landingPage.handlebars', {
+            title: 'TMS | Welcome',
+            scripts: script.login
+        });
+    }
 });
 
 

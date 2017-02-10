@@ -1,3 +1,5 @@
+$('#renter-text').addClass('purple-text');
+
 function initMap() {
     // Initialization of map at Chicago
     var map = new google.maps.Map(document.getElementById('map'), {
