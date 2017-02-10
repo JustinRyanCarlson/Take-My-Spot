@@ -1,27 +1,33 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
-            <form class="form-group">
+        <div class="col-sm-5">
+        <h4 class="text-center">Register</h4>
+        <hr>
+            <form class="form-group" action="/register" method="POST">
                 <label>Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Email">
+                <input type="text" class="form-control" name="email" placeholder="Email">
+                <br>
                 <label>Password</label>
-                <input type="text" class="form-control" id="password" placeholder="Password">
-                <label>Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name">
-                <label>Phone</label>
-                <input type="number" class="form-control" id="phone" placeholder="Phone">
-                <button type="submit" class="btn btn-primary" id="new-user">New User</button>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <br>
+                <button type="submit" class="btn btn-primary pull-right">New User</button>
             </form>
         </div>
-        <div class="col-sm-6">
-            <form class="form-group">
+        <div class="col-sm-2">
+            <h3 class="text-center or">OR</h3>
+        </div>
+        <div class="col-sm-5">
+        <h4 class="text-center">Login</h4>
+        <hr>
+            <form class="form-group" action="/login" method="POST">
                 <label>Email</label>
-                <input type="text" class="form-control" id="login-email" placeholder="Email">
+                <input type="text" class="form-control" name="email" placeholder="Email">
+                <br>
                 <label>Password</label>
-                <input type="text" class="form-control" id="login-password" placeholder="Password">
-                <button type="submit" class="btn btn-primary" id="login">Login</button>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <br>
+                <button type="submit" class="btn btn-primary pull-right">Login</button>
             </form>
         </div>
     </div>
 </div>
-

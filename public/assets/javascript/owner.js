@@ -1,3 +1,4 @@
+
 // $('#submitbtn').on('click', function() {
 //     for(i=0; i<req.body.row.length; i++){
 //         console.log('rows: ' + req.body.row[i]);
@@ -70,3 +71,6 @@ function geolocate() {
         });
     }
 }
+
+$('#owner-form-text').addClass('purple-text');
+
