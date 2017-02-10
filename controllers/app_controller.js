@@ -33,6 +33,12 @@ router.post('/login', passport.authenticate('local', {
         res.redirect('/renter');
     });
 
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
+        res.redirect('/');
+    });
+});
+
 router.post("/newuser", function(req, res) {
     console.log(req.body);
     db.users.create({
@@ -48,8 +54,6 @@ router.post("/login", function(req, res) {
 router.get("/login", function(req, res) {
     res.render('login.handlebars', {
         title: 'TMS | Login',
-        user: 'login',
-        loginurl: "/login",
         scripts: script.login
     });
 });
@@ -60,7 +64,11 @@ router.get('/renter', function(req, res) {
         console.log('user logged in', req.user);
         res.render('renter.handlebars', {
             title: 'TMS | Rentals',
-            scripts: script.renter
+            scripts: script.renter,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
         });
     } else {
         console.log('user not logged in');

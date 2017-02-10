@@ -36,12 +36,21 @@
                         <a class="nav-item nav-link" href="/owner">Owner Form</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/about">About</a>
+                        <a class="page-scroll" href="/about">About Us</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{{loginurl}}">{{user}}</a>
+                        <a>{{user}}</a>
+                    </li>
+                    <li>
+                        <a href="{{account-owner-url}}">{{account_owner}}</a>
+                    </li>
+                    <li>
+                        <a href="{{account-renter-url}}">{{account_renter}}</a>
+                    </li>
+                    <li>
+                        <a id="logout">{{logout}}</a>
                     </li>
                 </ul>
             </div>
@@ -65,6 +74,7 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="javascript/main.js"></script>
     <script src="javascript/theme/bootstrap.min.js"></script>
     <script src="javascript/theme/jquery.easing.min.js"></script>
     <script src="javascript/theme/jquery.min.js"></script>
