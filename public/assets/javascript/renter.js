@@ -1,3 +1,5 @@
+$('#renter-text').addClass('purple-text');
+
 function initMap() {
     // Initialization of map at Chicago
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -18,7 +20,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Current Location');
+            infoWindow.setContent('<div class=text-google>Current Location</div>');
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -52,10 +54,10 @@ function initMap() {
 
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    var content = "Address: " + allMarkers[i].address + "<br>" +
+                    var content = "<div class=text-google>Address: " + allMarkers[i].address + "<br>" +
                         "City: " + allMarkers[i].city + "<br>" +
                         "Rate: $" + allMarkers[i].price + "/hr<br>" +
-                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button>";
+                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button></div>";
 
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
