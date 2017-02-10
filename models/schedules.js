@@ -7,122 +7,122 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1]
 			}
 		},
-		 zero: {
+		 time_0: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        one: {
+        time_1: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        two: {
+        time_2: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        three: {
+        time_3: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        four: {
+        time_4: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        five: {
+        time_5: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        six: {
+        time_6: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        seven: {
+        time_7: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        eight: {
+        time_8: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        nine: {
+        time_9: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        ten: {
+        time_10: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        eleven: {
+        time_11: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        twelve: {
+        time_12: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        thirteen: {
+        time_13: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        fourteen: {
+        time_14: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        fifteen: {
+        time_15: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        sixteen: {
+        time_16: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        seventeen: {
+        time_17: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        eighteen: {
+        time_18: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        nineteen: {
+        time_19: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        twenty: {
+        time_20: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        twentyone: {
+        time_21: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        twentytwo: {
+        time_22: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        twentythree: {
+        time_23: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
