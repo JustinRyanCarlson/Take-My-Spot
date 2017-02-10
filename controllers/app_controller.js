@@ -77,25 +77,39 @@ router.get('/renter', function(req, res) {
     }
 });
 
-router.get('/renterForm', function(req, res) {
-    res.render('renterForm.handlebars', {
-        title: 'TMS | Rentals Form',
-        scripts: script.renter
-    });
-});
-
 router.get('/about', function(req, res) {
-    res.render('about.handlebars', {
-        title: 'TMS | About',
-        scripts: script.about
-    });
+    if (req.user !== undefined) {
+        res.render('about.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
+        });
+    } else {
+        res.render('about.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about
+        });
+    }
 });
 
 router.get('/owner', function(req, res) {
-    res.render('owner.handlebars', {
-        title: 'TMS | Owner',
-        scripts: script.owner
-    });
+    if (req.isAuthenticated()) {
+        console.log('user logged in', req.user);
+        res.render('owner.handlebars', {
+            title: 'TMS | Owner',
+            scripts: script.owner,
+            user: "Welcome, " + req.user.email,
+            account_owner: "Properties",
+            account_renter: "Renting",
+            logout: 'Logout'
+        });
+    } else {
+        console.log('user not logged in');
+        res.redirect('/loginerror');
+    }
 });
 
 router.get('/api/locations', function(req, res) {
