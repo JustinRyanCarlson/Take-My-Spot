@@ -516,3 +516,11 @@ img::-moz-selection {
 .text-google {
     color: black;
 }
+
+.or {
+    margin-top: 130px;
+}
+
+.purple-text {
+    color: #6CB31C !important;
+}
