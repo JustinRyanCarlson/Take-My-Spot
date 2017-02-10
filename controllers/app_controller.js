@@ -11,7 +11,6 @@ var script = {
 
 // ROUTES
 
-//passport
 router.post('/register', function(req, res) {
     db.Users.register(req.body.email, req.body.password, function(err, user) {
         if (err) {
@@ -30,12 +29,9 @@ router.post('/login', passport.authenticate('local', {
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
         // res.json(req.user);
+        console.log('loggedin');
         res.redirect('/renter');
     });
-
-
-
-
 
 router.post("/newuser", function(req, res) {
     console.log(req.body);
@@ -60,10 +56,16 @@ router.get("/login", function(req, res) {
 
 // need to add a user placeholder to this route
 router.get('/renter', function(req, res) {
-    res.render('renter.handlebars', {
-        title: 'TMS | Rentals',
-        scripts: script.renter
-    });
+    if (req.isAuthenticated()) {
+        console.log('user logged in', req.user);
+        res.render('renter.handlebars', {
+            title: 'TMS | Rentals',
+            scripts: script.renter
+        });
+    } else {
+        console.log('user not logged in');
+        res.redirect('/loginerror');
+    }
 });
 
 router.get('/renterForm', function(req, res) {
@@ -122,6 +124,12 @@ router.post("/", function(req, res) {
         });
     });
 
+});
+
+router.get('/loginerror', function(req, res) {
+    res.render('loginerror.handlebars', {
+        title: 'TMS | Error'
+    });
 });
 
 // --------------------------------------put this last---------------------------------
