@@ -93,37 +93,6 @@ router.get('/renter', function(req, res) {
     }
 });
 
-
-function getJSONForDay(day, dayPrefix, id, req) {
-    return {
-        days: day,
-        time_0: req.body[dayPrefix + '_zero'],
-        time_1: req.body[dayPrefix + '_one'],
-        time_2: req.body[dayPrefix + '_two'],
-        time_3: req.body[dayPrefix + '_three'],
-        time_4: req.body[dayPrefix + '_four'],
-        time_5: req.body[dayPrefix + '_five'],
-        time_6: req.body[dayPrefix + '_six'],
-        time_7: req.body[dayPrefix + '_seven'],
-        time_8: req.body[dayPrefix + '_eight'],
-        time_9: req.body[dayPrefix + '_nine'],
-        time_10: req.body[dayPrefix + '_ten'],
-        time_11: req.body[dayPrefix + '_eleven'],
-        time_12: req.body[dayPrefix + '_twelve'],
-        time_13: req.body[dayPrefix + '_thirteen'],
-        time_14: req.body[dayPrefix + '_fourteen'],
-        time_15: req.body[dayPrefix + '_fifteen'],
-        time_16: req.body[dayPrefix + '_sixteen'],
-        time_17: req.body[dayPrefix + '_seventeen'],
-        time_18: req.body[dayPrefix + '_eighteen'],
-        time_19: req.body[dayPrefix + '_nineteen'],
-        time_20: req.body[dayPrefix + '_twenty'],
-        time_21: req.body[dayPrefix + '_twentyone'],
-        time_22: req.body[dayPrefix + '_twentytwo'],
-        time_23: req.body[dayPrefix + '_twentythree'],
-        PropertyId: id
-    };
-}
 router.post("/", function(req, res) {
 
     db.Properties.create({
@@ -132,22 +101,15 @@ router.post("/", function(req, res) {
         city: req.body.city,
         state: req.body.state,
         price: req.body.price,
+        date: req.body.date,
         UserId: req.user.id
 
     }).then(function(dbRes) {
-        Promise.all([
-            db.Schedules.create(getJSONForDay(req.body.monday, 'm', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.tuesday, 't', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.wednesday, 'w', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.thursday, 'th', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.friday, 'f', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.saturday, 'sa', dbRes.id, req)),
-            db.Schedules.create(getJSONForDay(req.body.sunday, 'su', dbRes.id, req))
-        ]).then(function () {
+    
             res.redirect("/");            
         });
     });
-});
+
 
 router.get('/about', function(req, res) {
     if (req.user !== undefined) {
