@@ -7,7 +7,8 @@ var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
     owner: '<script src="javascript/owner.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
     renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
-    about: '<script src="javascript/about.js" type="text/javascript"></script>'
+    about: '<script src="javascript/about.js" type="text/javascript"></script>',
+    landingPage: '<script src="javascript/landingpage.js" type="text/javascript"></script>'
 };
 
 // ROUTES
@@ -59,7 +60,6 @@ router.get("/login", function(req, res) {
     }
 });
 
-// need to add a user placeholder to this route
 router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -150,7 +150,6 @@ router.post("/", function(req, res) {
             monday: req.body.monday,
             0: req.body.zero
         }).then(function(dbRes) {
-            // res.json(dbRes);
             res.redirect("/");
         });
     });
@@ -168,7 +167,7 @@ router.use(function(req, res) {
     if (req.user !== undefined) {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
-            scripts: script.login,
+            scripts: script.landingPage,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
             account_owner_url: "/owner/" + req.user.email,
@@ -179,7 +178,7 @@ router.use(function(req, res) {
     } else {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
-            scripts: script.login
+            scripts: script.landingPage
         });
     }
 });
