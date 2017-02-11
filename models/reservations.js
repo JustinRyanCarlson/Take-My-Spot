@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        days : {
+        days: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -51,9 +51,9 @@ module.exports = function(sequelize, DataTypes) {
                 // When we delete an Author, we'll also delete their Posts "cascade"
                 // An Author (foreignKey) is required or a Post can't be made
                 // console.log(models.Users);
-                Renters.belongsTo(models.Properties);
+                Reservations.belongsTo(models.Properties);
             }
         }
     });
-    return Renters;
+    return Reservations;
 };
