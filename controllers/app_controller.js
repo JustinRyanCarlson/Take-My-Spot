@@ -150,17 +150,16 @@ router.get('/api/locations', function(req, res) {
     });
 });
 
-router.get('/:id', function(req, res) {
-    // db.Owners.findOne({
-    //     where: {
-    //         id: req.params.id
-    //     }
-    // }).then(function(data) {
-    //     // this gives all info in the DB for the entry clicked
-    //     console.log(data.dataValues);
-    // });
-    res.render('loginerror.handlebars', {
-        title: 'TMS | Error'
+router.post('/rentnow', function(req, res) {
+    console.log(req.body.id, req.body.date);
+    db.Reservations.findOne({
+        where: {
+            PropertyId: req.body.id,
+            date: req.body.date
+        }
+    }).then(function(data) {
+        // this gives all info in the DB for the entry clicked
+        console.log(data.dataValues);
     });
 });
 
