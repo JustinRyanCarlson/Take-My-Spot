@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
 	var Schedules = sequelize.define("Schedules", {
-		days: {
+		days : {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				len: [1]
 			}
 		},
-		 time_0: {
+		time_0: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
