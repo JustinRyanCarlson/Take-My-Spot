@@ -41,14 +41,6 @@ router.get('/logout', function(req, res) {
     });
 });
 
-router.post("/newuser", function(req, res) {
-    console.log(req.body);
-    db.users.create({
-        email: req.body.email,
-        password: req.body.password
-    });
-});
-
 router.post("/login", function(req, res) {
     console.log('success');
 });
@@ -158,19 +150,19 @@ router.get('/api/locations', function(req, res) {
     });
 });
 
-router.get('/renter/property/:id', function(req, res) {
-    db.Owners.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(data) {
-        // this gives all info in the DB for the entry clicked
-        console.log(data.dataValues);
+router.get('/:id', function(req, res) {
+    // db.Owners.findOne({
+    //     where: {
+    //         id: req.params.id
+    //     }
+    // }).then(function(data) {
+    //     // this gives all info in the DB for the entry clicked
+    //     console.log(data.dataValues);
+    // });
+    res.render('loginerror.handlebars', {
+        title: 'TMS | Error'
     });
-
 });
-
-
 
 
 router.post("/", function(req, res) {
@@ -185,9 +177,10 @@ router.post("/", function(req, res) {
             state: req.body.state,
             price: req.body.price,
             monday: req.body.monday,
-            0: req.body.zero
+            0: req.body.zero,
+            UserId: req.user.id
         }).then(function(dbRes) {
-            res.redirect("/");
+            res.redirect("/propertyList");
         });
     });
 

@@ -534,3 +534,8 @@ img::-moz-selection {
     color: black;
     background-color: white;
 }
+
+.panel-body {
+    background-color: #D6D6D6;
+    color: black;
+}
