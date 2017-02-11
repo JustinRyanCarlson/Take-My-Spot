@@ -66,14 +66,14 @@ router.get("/login", function(req, res) {
 //     });
 // });
 
-// router.put('/renter/:id', function(req, res) {
-//     db.Owners.delete({}, 
-//     {
-//         where: {
-//             id: req.params.id
-//         }
-//     });
-// });
+router.put('/renter/:id', function(req, res) {
+    db.Properties.update( 
+    {
+        where: {
+            id: req.params.id
+        }
+    });
+});
 
 // need to add a user placeholder to this route
 router.get('/renter', function(req, res) {
