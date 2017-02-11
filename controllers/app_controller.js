@@ -95,6 +95,31 @@ router.get('/about', function (req, res) {
     }
 });
 
+
+router.get('/propertyList', function (req, res) {
+    if (req.user !== undefined) {
+
+        db.Owners.findAll({}).then(function (ownerResp) {
+            // console.log("HIIIIIIII" + ownerResp);
+            res.render('propertyList.handlebars', {
+                title: 'TMS | Property',
+                scripts: script.about,
+                user: "Welcome, " + req.user.email,
+                account_owner: "Properties",
+                account_renter: "Renting",
+                logout: 'Logout',
+                Owners: ownerResp
+            });
+        });
+
+    } else {
+        res.render('propertyList.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about
+        });
+    }
+});
+
 router.get('/owner', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -127,10 +152,12 @@ router.get('/renter/property/:id', function (req, res) {
         // this gives all info in the DB for the entry clicked
         console.log(data.dataValues);
     });
+
 });
 
 
 router.post("/", function (req, res) {
+
     var address = req.body.address + ", " + req.body.city;
     geocoder.geocode(address, function (err, data) {
         db.Owners.create({
@@ -142,10 +169,11 @@ router.post("/", function (req, res) {
             state: req.body.state,
             price: req.body.price,
             monday: req.body.monday,
-            0: req.body.zero
+            0: req.body.zero,
+            UserId: req.user.id
         }).then(function (dbRes) {
             // res.json(dbRes);
-            res.redirect("/");
+            res.redirect("/propertyList");
         });
     });
 

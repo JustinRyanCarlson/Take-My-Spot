@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+        
+                <legend>Property List</legend>
+           
+                <button class="btn btn-primary" id="submit-button" data-toggle="modal" onClick="window.location='/owner'";>Add More Properties</button>
+              
+                    {{#each Owners}}
+                  		
+						    <ol>
+						        <li>
+								   	<h3>{{this.address}}, {{city}}, {{state}}</h3>
+									<button >Book</button>
+								</li>
+    						</ol>
+    					
+    				
+					{{/each}}   
+        </div>
+    </div>
+</div>
