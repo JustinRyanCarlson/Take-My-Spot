@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"> Take My Spot</a>
+                <a id="landing-form-text" class="navbar-brand" href="/"> Take My Spot</a>
             </div>
             <div class="navbar-collapse collapse" id="bs-navbar">
                 <ul class="nav navbar-nav">
@@ -45,11 +45,10 @@
                     </li>
                     <li>
 
-                        <a href="/propertyList">{{account_owner}}</a>
-
+                        <a href="{{account_owner_url}}">{{account_owner}}</a>
                     </li>
                     <li>
-                        <a href="{{account-renter-url}}">{{account_renter}}</a>
+                        <a href="{{account_renter_url}}">{{account_renter}}</a>
                     </li>
                     <li>
                         <a id="logout">{{logout}}</a>
