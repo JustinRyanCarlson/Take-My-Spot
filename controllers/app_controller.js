@@ -101,14 +101,14 @@ router.get('/about', function(req, res) {
 
 
 
-router.get('/propertyList', function (req, res) {
+router.get('/propertyList', function(req, res) {
     if (req.user !== undefined) {
 
         db.Owners.findAll({
             where: {
                 UserId: req.user.id
             }
-        }).then(function (ownerResp) {
+        }).then(function(ownerResp) {
             // console.log("HIIIIIIII" + ownerResp);
             res.render('propertyList.handlebars', {
                 title: 'TMS | Property',
@@ -129,7 +129,7 @@ router.get('/propertyList', function (req, res) {
     }
 });
 
-router.get('/owner', function (req, res) {
+router.get('/owner', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('owner.handlebars', {
@@ -165,6 +165,8 @@ router.get('/renter/property/:id', function(req, res) {
     });
 
 });
+
+
 
 
 router.post("/", function(req, res) {
