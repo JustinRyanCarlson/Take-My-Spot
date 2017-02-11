@@ -99,7 +99,37 @@ router.get('/about', function(req, res) {
     }
 });
 
-router.get('/owner', function(req, res) {
+
+
+router.get('/propertyList', function (req, res) {
+    if (req.user !== undefined) {
+
+        db.Owners.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function (ownerResp) {
+            // console.log("HIIIIIIII" + ownerResp);
+            res.render('propertyList.handlebars', {
+                title: 'TMS | Property',
+                scripts: script.about,
+                user: "Welcome, " + req.user.email,
+                account_owner: "Properties",
+                account_renter: "Renting",
+                logout: 'Logout',
+                Owners: ownerResp
+            });
+        });
+
+    } else {
+        res.render('propertyList.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about
+        });
+    }
+});
+
+router.get('/owner', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('owner.handlebars', {
@@ -133,6 +163,7 @@ router.get('/renter/property/:id', function(req, res) {
         // this gives all info in the DB for the entry clicked
         console.log(data.dataValues);
     });
+
 });
 
 
