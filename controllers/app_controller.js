@@ -95,6 +95,7 @@ router.get('/about', function (req, res) {
     }
 });
 
+
 router.get('/propertyList', function (req, res) {
     if (req.user !== undefined) {
 
@@ -156,7 +157,7 @@ router.get('/renter/property/:id', function (req, res) {
 
 
 router.post("/", function (req, res) {
-    // console.log("HIIIIIIII ==== " + req.user.id);
+
     var address = req.body.address + ", " + req.body.city;
     geocoder.geocode(address, function (err, data) {
         db.Owners.create({
@@ -173,7 +174,6 @@ router.post("/", function (req, res) {
         }).then(function (dbRes) {
             // res.json(dbRes);
             res.redirect("/propertyList");
-
         });
     });
 

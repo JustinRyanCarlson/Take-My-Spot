@@ -2,7 +2,6 @@ var passportLocalSequelize = require('passport-local-sequelize');
 
 module.exports = function (sequelize, DataTypes) {
     var Users = sequelize.define("Users", {
-
         email: {
             type: DataTypes.STRING,
             unique: true,
@@ -19,6 +18,7 @@ module.exports = function (sequelize, DataTypes) {
         }
     }, {
         classMethods: {
+
             associate: function (models) {
                 // Associating Author with Posts
 
@@ -36,4 +36,5 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     return Users;
+
 };
