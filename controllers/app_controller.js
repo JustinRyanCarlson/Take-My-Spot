@@ -18,8 +18,11 @@ router.post('/register', function(req, res) {
     db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
         if (err) {
             return res.json(err);
+        } else {
+            passport.authenticate('local')(req, res, function() {
+                res.redirect('/renter');
+            });
         }
-        res.redirect('/login');
     });
 });
 
