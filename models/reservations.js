@@ -1,48 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     var Reservations = sequelize.define("Reservations", {
-        price: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        days: {
+        date: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
-        },
-        zipcode: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        city: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        state: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        zero: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
         }
     }, {
         // We're saying that we want our Author to have Posts
@@ -51,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
                 // When we delete an Author, we'll also delete their Posts "cascade"
                 // An Author (foreignKey) is required or a Post can't be made
                 // console.log(models.Users);
-                Reservations.belongsTo(models.Users, { through: models.Properties });
+                Reservations.belongsTo(models.Properties);
+                Reservations.belongsTo(models.Users);
             }
         }
     });
