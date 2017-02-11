@@ -41,6 +41,17 @@ router.get('/logout', function(req, res) {
     });
 });
 
+<<<<<<< HEAD
+router.post("/newuser", function(req, res) {
+    console.log(req.body);
+    db.users.create({
+        email: req.body.email,
+        password: req.body.password
+    });
+});
+
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.post("/login", function(req, res) {
     console.log('success');
 });
@@ -56,6 +67,26 @@ router.get("/login", function(req, res) {
     }
 });
 
+<<<<<<< HEAD
+// router.post('/renter', function(req, res) {
+//     console.log(req.body);
+//     db.Availabilities.create({
+
+//     });
+// });
+
+router.put('/renter/:id', function(req, res) {
+    db.Properties.update( 
+    {
+        where: {
+            id: req.params.id
+        }
+    });
+});
+
+// need to add a user placeholder to this route
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -75,6 +106,27 @@ router.get('/renter', function(req, res) {
     }
 });
 
+<<<<<<< HEAD
+router.post("/", function(req, res) {
+
+    db.Properties.create({
+        zipcode: req.body.zipcode,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        price: req.body.price,
+        date: req.body.date,
+        UserId: req.user.id
+
+    }).then(function(dbRes) {
+    
+            res.redirect("/");            
+        });
+    });
+
+
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/about', function(req, res) {
     if (req.user !== undefined) {
         res.render('about.handlebars', {
@@ -95,6 +147,8 @@ router.get('/about', function(req, res) {
     }
 });
 
+<<<<<<< HEAD
+=======
 
 
 router.get('/propertyList', function(req, res) {
@@ -125,6 +179,7 @@ router.get('/propertyList', function(req, res) {
     }
 });
 
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/owner', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -145,10 +200,11 @@ router.get('/owner', function(req, res) {
 });
 
 router.get('/api/locations', function(req, res) {
-    db.Owners.findAll({}).then(function(data) {
+    db.Properties.findAll({}).then(function(data) {
         res.json(data);
     });
 });
+
 
 router.post('/rentnow', function(req, res) {
     console.log(req.body.id, req.body.date);
@@ -179,12 +235,12 @@ router.post("/", function(req, res) {
             res.redirect("/propertyList");
         });
     });
-
 });
 
 router.get('/loginerror', function(req, res) {
     res.render('loginerror.handlebars', {
         title: 'TMS | Error'
+
     });
 });
 
