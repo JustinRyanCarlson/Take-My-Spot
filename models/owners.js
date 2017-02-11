@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-    var Owners = sequelize.define("Owners", {        
+module.exports = function (sequelize, DataTypes) {
+    var Owners = sequelize.define("Owners", {
         price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
@@ -209,7 +209,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         // We're saying that we want our Author to have Posts
         classMethods: {
-            associate: function(models) {
+            associate: function (models) {
                 // When we delete an Author, we'll also delete their Posts "cascade"
                 // An Author (foreignKey) is required or a Post can't be made
                 // console.log(models.Users);
