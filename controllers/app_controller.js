@@ -167,17 +167,14 @@ router.post('/rentnow', function(req, res) {
 router.post("/", function(req, res) {
     var address = req.body.address + ", " + req.body.city;
     geocoder.geocode(address, function(err, data) {
-        db.Owners.create({
+        db.Properties.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
             city: req.body.city,
-            longitude: data.results[0].geometry.location.lng,
-            latitude: data.results[0].geometry.location.lat,
             state: req.body.state,
             price: req.body.price,
-            monday: req.body.monday,
-            0: req.body.zero,
-            UserId: req.user.id
+            date: req.body.date,
+            UserId: req.user.ids
         }).then(function(dbRes) {
             res.redirect("/propertyList");
         });
