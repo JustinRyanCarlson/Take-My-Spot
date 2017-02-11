@@ -55,10 +55,10 @@ function initMap() {
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     var content = "<div class=text-google>Address: " + allMarkers[i].address + "<br>" +
-                        "City: " + allMarkers[i].city + "<br>" +
-                        "Rate: $" + allMarkers[i].price + "/hr<br>" +
-                        "<button class=property data-id=" + allMarkers[i].id + ">Click for availability</button></div>";
-
+                        "<div class=text-center>City: " + allMarkers[i].city + "</div>" +
+                        "<div class=text-center>Rate: $" + allMarkers[i].price + "/hr</div>" +
+                        "<form><label>Choose a date:</label><input id=" + allMarkers[i].id + " type=date></input></form>" +
+                        "<div class=text-center><button class=property data-id=" + allMarkers[i].id + ">Book Now</button></div></div>";
                     infowindow.setContent(content);
                     infowindow.open(map, marker);
                 };
@@ -70,8 +70,14 @@ function initMap() {
 
 
 $(document.body).on('click', '.property', function() {
-    var route = "/renter/property/" + $(this).attr("data-id");
-    $.get(route, function() {
+    var dateIden = "#" + $(this).attr("data-id");
+    var date = $(dateIden).val();
+    console.log(date);
+    var id = {
+        id: $(this).attr("data-id"),
+        date: null
+    };
+    $.post('/rentnow', id, function(successfulMSG) {
 
     });
 });

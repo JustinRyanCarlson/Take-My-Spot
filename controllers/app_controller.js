@@ -7,7 +7,9 @@ var script = {
     login: '<script src="javascript/login.js" type="text/javascript"></script>',
     owner: '<script src="javascript/owner.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
     renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
-    about: '<script src="javascript/about.js" type="text/javascript"></script>'
+    about: '<script src="javascript/about.js" type="text/javascript"></script>',
+    landingPage: '<script src="javascript/landingpage.js" type="text/javascript"></script>',
+    propertyList: '<script src="javascript/propertyList.js" type="text/javascript"></script>'
 };
 
 // ROUTES
@@ -16,8 +18,11 @@ router.post('/register', function(req, res) {
     db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
         if (err) {
             return res.json(err);
+        } else {
+            passport.authenticate('local')(req, res, function() {
+                res.redirect('/renter');
+            });
         }
-        res.redirect('/login');
     });
 });
 
@@ -36,6 +41,7 @@ router.get('/logout', function(req, res) {
     });
 });
 
+<<<<<<< HEAD
 router.post("/newuser", function(req, res) {
     console.log(req.body);
     db.users.create({
@@ -44,6 +50,8 @@ router.post("/newuser", function(req, res) {
     });
 });
 
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.post("/login", function(req, res) {
     console.log('success');
 });
@@ -59,6 +67,7 @@ router.get("/login", function(req, res) {
     }
 });
 
+<<<<<<< HEAD
 // router.post('/renter', function(req, res) {
 //     console.log(req.body);
 //     db.Availabilities.create({
@@ -76,6 +85,8 @@ router.put('/renter/:id', function(req, res) {
 });
 
 // need to add a user placeholder to this route
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -84,7 +95,9 @@ router.get('/renter', function(req, res) {
             scripts: script.renter,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -93,6 +106,7 @@ router.get('/renter', function(req, res) {
     }
 });
 
+<<<<<<< HEAD
 router.post("/", function(req, res) {
 
     db.Properties.create({
@@ -111,6 +125,8 @@ router.post("/", function(req, res) {
     });
 
 
+=======
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/about', function(req, res) {
     if (req.user !== undefined) {
         res.render('about.handlebars', {
@@ -118,7 +134,9 @@ router.get('/about', function(req, res) {
             scripts: script.about,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -129,6 +147,39 @@ router.get('/about', function(req, res) {
     }
 });
 
+<<<<<<< HEAD
+=======
+
+
+router.get('/propertyList', function(req, res) {
+    if (req.user !== undefined) {
+
+        db.Owners.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function(ownerResp) {
+            // console.log("HIIIIIIII" + ownerResp);
+            res.render('propertyList.handlebars', {
+                title: 'TMS | Property',
+                scripts: script.propertyList,
+                user: "Welcome, " + req.user.email,
+                account_owner: "Properties",
+                account_renter: "Renting",
+                logout: 'Logout',
+                Owners: ownerResp
+            });
+        });
+
+    } else {
+        res.render('propertyList.handlebars', {
+            title: 'TMS | About',
+            scripts: script.about
+        });
+    }
+});
+
+>>>>>>> 19180f2f9d729cc495bd4f5083c969dfde822660
 router.get('/owner', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
@@ -137,7 +188,9 @@ router.get('/owner', function(req, res) {
             scripts: script.owner,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -152,10 +205,13 @@ router.get('/api/locations', function(req, res) {
     });
 });
 
-router.get('/renter/property/:id', function(req, res) {
-    db.Properties.findOne({
+
+router.post('/rentnow', function(req, res) {
+    console.log(req.body.id, req.body.date);
+    db.Reservations.findOne({
         where: {
-            id: req.params.id
+            PropertyId: req.body.id,
+            date: req.body.date
         }
     }).then(function(data) {
         // this gives all info in the DB for the entry clicked
@@ -171,15 +227,12 @@ router.post("/", function(req, res) {
             zipcode: req.body.zipcode,
             address: req.body.address,
             city: req.body.city,
-            longitude: data.results[0].geometry.location.lng,
-            latitude: data.results[0].geometry.location.lat,
             state: req.body.state,
             price: req.body.price,
-            monday: req.body.monday,
-            0: req.body.zero
+            date: req.body.date,
+            UserId: req.user.ids
         }).then(function(dbRes) {
-            // res.json(dbRes);
-            res.redirect("/");
+            res.redirect("/propertyList");
         });
     });
 });
@@ -196,16 +249,18 @@ router.use(function(req, res) {
     if (req.user !== undefined) {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
-            scripts: script.login,
+            scripts: script.landingPage,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
-            scripts: script.login
+            scripts: script.landingPage
         });
     }
 });
