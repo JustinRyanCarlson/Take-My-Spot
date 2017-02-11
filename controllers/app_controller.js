@@ -8,7 +8,8 @@ var script = {
     owner: '<script src="javascript/owner.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
     renter: '<script src="javascript/renter.js" type="text/javascript"></script><script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkjQIFfTlx7SAlf71jK9wgvWj6-Urkamc&callback=initMap"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>',
     about: '<script src="javascript/about.js" type="text/javascript"></script>',
-    landingPage: '<script src="javascript/landingpage.js" type="text/javascript"></script>'
+    landingPage: '<script src="javascript/landingpage.js" type="text/javascript"></script>',
+    propertyList: '<script src="javascript/propertyList.js" type="text/javascript"></script>'
 };
 
 // ROUTES
@@ -112,7 +113,7 @@ router.get('/propertyList', function(req, res) {
             // console.log("HIIIIIIII" + ownerResp);
             res.render('propertyList.handlebars', {
                 title: 'TMS | Property',
-                scripts: script.about,
+                scripts: script.propertyList,
                 user: "Welcome, " + req.user.email,
                 account_owner: "Properties",
                 account_renter: "Renting",

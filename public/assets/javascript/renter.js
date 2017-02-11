@@ -71,7 +71,5 @@ function initMap() {
 
 $(document.body).on('click', '.property', function() {
     var route = "/renter/property/" + $(this).attr("data-id");
-    $.get(route, function() {
-
-    });
+    window.location.href = route;
 });
