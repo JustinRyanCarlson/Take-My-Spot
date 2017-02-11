@@ -12,8 +12,8 @@ var script = {
 
 // ROUTES
 
-router.post('/register', function (req, res) {
-    db.Users.register(req.body.email.toLowerCase(), req.body.password, function (err, user) {
+router.post('/register', function(req, res) {
+    db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
         if (err) {
             return res.json(err);
         }
@@ -24,19 +24,19 @@ router.post('/register', function (req, res) {
 router.post('/login', passport.authenticate('local', {
         failureRedirect: '/login'
     }),
-    function (req, res) {
+    function(req, res) {
         // res.json(req.user);
         console.log('loggedin');
         res.redirect('/renter');
     });
 
-router.get('/logout', function (req, res) {
-    req.session.destroy(function (err) {
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
         res.redirect('/login');
     });
 });
 
-router.post("/newuser", function (req, res) {
+router.post("/newuser", function(req, res) {
     console.log(req.body);
     db.users.create({
         email: req.body.email,
@@ -44,11 +44,11 @@ router.post("/newuser", function (req, res) {
     });
 });
 
-router.post("/login", function (req, res) {
+router.post("/login", function(req, res) {
     console.log('success');
 });
 
-router.get("/login", function (req, res) {
+router.get("/login", function(req, res) {
     if (req.user !== undefined) {
         res.redirect('/renter');
     } else {
@@ -60,7 +60,7 @@ router.get("/login", function (req, res) {
 });
 
 // need to add a user placeholder to this route
-router.get('/renter', function (req, res) {
+router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('renter.handlebars', {
@@ -68,7 +68,9 @@ router.get('/renter', function (req, res) {
             scripts: script.renter,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -77,14 +79,16 @@ router.get('/renter', function (req, res) {
     }
 });
 
-router.get('/about', function (req, res) {
+router.get('/about', function(req, res) {
     if (req.user !== undefined) {
         res.render('about.handlebars', {
             title: 'TMS | About',
             scripts: script.about,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -95,7 +99,7 @@ router.get('/about', function (req, res) {
     }
 });
 
-router.get('/owner', function (req, res) {
+router.get('/owner', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('owner.handlebars', {
@@ -103,7 +107,9 @@ router.get('/owner', function (req, res) {
             scripts: script.owner,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
@@ -112,27 +118,27 @@ router.get('/owner', function (req, res) {
     }
 });
 
-router.get('/api/locations', function (req, res) {
-    db.Owners.findAll({}).then(function (data) {
+router.get('/api/locations', function(req, res) {
+    db.Owners.findAll({}).then(function(data) {
         res.json(data);
     });
 });
 
-router.get('/renter/property/:id', function (req, res) {
+router.get('/renter/property/:id', function(req, res) {
     db.Owners.findOne({
         where: {
             id: req.params.id
         }
-    }).then(function (data) {
+    }).then(function(data) {
         // this gives all info in the DB for the entry clicked
         console.log(data.dataValues);
     });
 });
 
 
-router.post("/", function (req, res) {
+router.post("/", function(req, res) {
     var address = req.body.address + ", " + req.body.city;
-    geocoder.geocode(address, function (err, data) {
+    geocoder.geocode(address, function(err, data) {
         db.Owners.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
@@ -143,7 +149,7 @@ router.post("/", function (req, res) {
             price: req.body.price,
             monday: req.body.monday,
             0: req.body.zero
-        }).then(function (dbRes) {
+        }).then(function(dbRes) {
             // res.json(dbRes);
             res.redirect("/");
         });
@@ -151,21 +157,23 @@ router.post("/", function (req, res) {
 
 });
 
-router.get('/loginerror', function (req, res) {
+router.get('/loginerror', function(req, res) {
     res.render('loginerror.handlebars', {
         title: 'TMS | Error'
     });
 });
 
 // --------------------------------------put this last---------------------------------
-router.use(function (req, res) {
+router.use(function(req, res) {
     if (req.user !== undefined) {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
             scripts: script.login,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
+            account_owner_url: "/owner/" + req.user.email,
             account_renter: "Renting",
+            account_renter_url: "/renter/" + req.user.email,
             logout: 'Logout'
         });
     } else {
