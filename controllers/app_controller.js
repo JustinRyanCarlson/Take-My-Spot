@@ -99,7 +99,11 @@ router.get('/about', function (req, res) {
 router.get('/propertyList', function (req, res) {
     if (req.user !== undefined) {
 
-        db.Owners.findAll({}).then(function (ownerResp) {
+        db.Owners.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(function (ownerResp) {
             // console.log("HIIIIIIII" + ownerResp);
             res.render('propertyList.handlebars', {
                 title: 'TMS | Property',
