@@ -94,53 +94,217 @@ router.get('/renter', function (req, res) {
 });
 
 router.post("/owner", function(req, res) {
-    console.log(req.body);
+    
     db.Properties.create({
         zipcode: req.body.zipcode,
         address: req.body.address,
         city: req.body.city,
         state: req.body.state,
         price: req.body.price
+        
     }).then(function(dbRes) {
         
     db.Schedules.create({
-        days: req.body.monday,
-        time_0: req.body.zero,
-        time_1: req.body.one, 
-        time_2: req.body.two, 
-        time_3: req.body.three, 
-        time_4: req.body.four, 
-        time_5: req.body.five, 
-        time_6: req.body.six, 
-        time_7: req.body.seven, 
-        time_8: req.body.eight, 
-        time_9: req.body.nine, 
-        time_10: req.body.ten, 
-        time_11: req.body.eleven, 
-        time_12: req.body.twelve, 
-        time_13: req.body.thirteen, 
-        time_14: req.body.fourteen, 
-        time_15: req.body.fifteen, 
-        time_16: req.body.sixteen, 
-        time_17: req.body.seventeen, 
-        time_18: req.body.eighteen, 
-        time_19: req.body.nineteen, 
-        time_20: req.body.twenty, 
-        time_21: req.body.twentyone, 
-        time_22: req.body.twentytwo, 
-        time_23: req.body.twentythree 
+        days: req.body.monday,   
+        time_0: req.body.m_zero,
+        time_1: req.body.m_one, 
+        time_2: req.body.m_two, 
+        time_3: req.body.m_three, 
+        time_4: req.body.m_four, 
+        time_5: req.body.m_five, 
+        time_6: req.body.m_six, 
+        time_7: req.body.m_seven, 
+        time_8: req.body.m_eight, 
+        time_9: req.body.m_nine, 
+        time_10: req.body.m_ten, 
+        time_11: req.body.m_eleven, 
+        time_12: req.body.m_twelve, 
+        time_13: req.body.m_thirteen, 
+        time_14: req.body.m_fourteen, 
+        time_15: req.body.m_fifteen, 
+        time_16: req.body.m_sixteen, 
+        time_17: req.body.m_seventeen, 
+        time_18: req.body.m_eighteen, 
+        time_19: req.body.m_nineteen, 
+        time_20: req.body.m_twenty, 
+        time_21: req.body.m_twentyone, 
+        time_22: req.body.m_twentytwo, 
+        time_23: req.body.m_twentythree 
+   });
+    }).then(function(dbRes){
+         db.Schedules.create({
+        days: req.body.tuesday,
+        time_0: req.body.t_zero,
+        time_1: req.body.t_one, 
+        time_2: req.body.t_two, 
+        time_3: req.body.t_three, 
+        time_4: req.body.t_four, 
+        time_5: req.body.t_five, 
+        time_6: req.body.t_six, 
+        time_7: req.body.t_seven, 
+        time_8: req.body.t_eight, 
+        time_9: req.body.t_nine, 
+        time_10: req.body.t_ten, 
+        time_11: req.body.t_eleven, 
+        time_12: req.body.t_twelve, 
+        time_13: req.body.t_thirteen, 
+        time_14: req.body.t_fourteen, 
+        time_15: req.body.t_fifteen, 
+        time_16: req.body.t_sixteen, 
+        time_17: req.body.t_seventeen, 
+        time_18: req.body.t_eighteen, 
+        time_19: req.body.t_nineteen, 
+        time_20: req.body.t_twenty, 
+        time_21: req.body.t_twentyone, 
+        time_22: req.body.t_twentytwo, 
+        time_23: req.body.t_twentythree
     });
-
-        var result;
-         for(i=0; i<db.Schedules.findAll({
-            where: {time_0: 0}}).length; i++){
-         result = db.Schedules.time_[i];
-    }
-    console.log('rows: ' + result);
+    }).then(function(dbRes){
+         db.Schedules.create({
+        days: req.body.wednesday,
+        time_0: req.body.w_zero,
+        time_1: req.body.w_one, 
+        time_2: req.body.w_two, 
+        time_3: req.body.w_three, 
+        time_4: req.body.w_four, 
+        time_5: req.body.w_five, 
+        time_6: req.body.w_six, 
+        time_7: req.body.w_seven, 
+        time_8: req.body.w_eight, 
+        time_9: req.body.w_nine, 
+        time_10: req.body.w_ten, 
+        time_11: req.body.w_eleven, 
+        time_12: req.body.w_twelve, 
+        time_13: req.body.w_thirteen, 
+        time_14: req.body.w_fourteen, 
+        time_15: req.body.w_fifteen, 
+        time_16: req.body.w_sixteen, 
+        time_17: req.body.w_seventeen, 
+        time_18: req.body.w_eighteen, 
+        time_19: req.body.w_nineteen, 
+        time_20: req.body.w_twenty, 
+        time_21: req.body.w_twentyone, 
+        time_22: req.body.w_twentytwo, 
+        time_23: req.body.w_twentythree
+     });
+    }).then(function(dbRes){
+         db.Schedules.create({
+         days: req.body.thursday,
+        time_0: req.body.th_zero,
+        time_1: req.body.th_one, 
+        time_2: req.body.th_two, 
+        time_3: req.body.th_three, 
+        time_4: req.body.th_four, 
+        time_5: req.body.th_five, 
+        time_6: req.body.th_six, 
+        time_7: req.body.th_seven, 
+        time_8: req.body.th_eight, 
+        time_9: req.body.th_nine, 
+        time_10: req.body.th_ten, 
+        time_11: req.body.th_eleven, 
+        time_12: req.body.th_twelve, 
+        time_13: req.body.th_thirteen, 
+        time_14: req.body.th_fourteen, 
+        time_15: req.body.th_fifteen, 
+        time_16: req.body.th_sixteen, 
+        time_17: req.body.th_seventeen, 
+        time_18: req.body.th_eighteen, 
+        time_19: req.body.th_nineteen, 
+        time_20: req.body.th_twenty, 
+        time_21: req.body.th_twentyone, 
+        time_22: req.body.th_twentytwo, 
+        time_23: req.body.th_twentythree
+     });
+    }).then(function(dbRes){
+         db.Schedules.create({
+        days: req.body.friday,  
+        time_0: req.body.f_zero,
+        time_1: req.body.f_one, 
+        time_2: req.body.f_two, 
+        time_3: req.body.f_three, 
+        time_4: req.body.f_four, 
+        time_5: req.body.f_five, 
+        time_6: req.body.f_six, 
+        time_7: req.body.f_seven, 
+        time_8: req.body.f_eight, 
+        time_9: req.body.f_nine, 
+        time_10: req.body.f_ten, 
+        time_11: req.body.f_eleven, 
+        time_12: req.body.f_twelve, 
+        time_13: req.body.f_thirteen, 
+        time_14: req.body.f_fourteen, 
+        time_15: req.body.f_fifteen, 
+        time_16: req.body.f_sixteen, 
+        time_17: req.body.f_seventeen, 
+        time_18: req.body.f_eighteen, 
+        time_19: req.body.f_nineteen, 
+        time_20: req.body.f_twenty, 
+        time_21: req.body.f_twentyone, 
+        time_22: req.body.f_twentytwo, 
+        time_23: req.body.f_twentythree
+    });
+    }).then(function(dbRes) {
+        db.Schedules.create({
+        days: req.body.saturday,  
+        time_0: req.body.sa_zero,
+        time_1: req.body.sa_one, 
+        time_2: req.body.sa_two, 
+        time_3: req.body.sa_three, 
+        time_4: req.body.sa_four, 
+        time_5: req.body.sa_five, 
+        time_6: req.body.sa_six, 
+        time_7: req.body.sa_seven, 
+        time_8: req.body.sa_eight, 
+        time_9: req.body.sa_nine, 
+        time_10: req.body.sa_ten, 
+        time_11: req.body.sa_eleven, 
+        time_12: req.body.sa_twelve, 
+        time_13: req.body.sa_thirteen, 
+        time_14: req.body.sa_fourteen, 
+        time_15: req.body.sa_fifteen, 
+        time_16: req.body.sa_sixteen, 
+        time_17: req.body.sa_seventeen, 
+        time_18: req.body.sa_eighteen, 
+        time_19: req.body.sa_nineteen, 
+        time_20: req.body.sa_twenty, 
+        time_21: req.body.sa_twentyone, 
+        time_22: req.body.sa_twentytwo, 
+        time_23: req.body.sa_twentythree
+  });
+    }).then(function(dbRes){
+         db.Schedules.create({
+        days: req.body.sunday,    
+        time_0: req.body.su_zero,
+        time_1: req.body.su_one, 
+        time_2: req.body.su_two, 
+        time_3: req.body.su_three, 
+        time_4: req.body.su_four, 
+        time_5: req.body.su_five, 
+        time_6: req.body.su_six, 
+        time_7: req.body.su_seven, 
+        time_8: req.body.su_eight, 
+        time_9: req.body.su_nine, 
+        time_10: req.body.su_ten, 
+        time_11: req.body.su_eleven, 
+        time_12: req.body.su_twelve, 
+        time_13: req.body.su_thirteen, 
+        time_14: req.body.su_fourteen, 
+        time_15: req.body.su_fifteen, 
+        time_16: req.body.su_sixteen, 
+        time_17: req.body.su_seventeen, 
+        time_18: req.body.su_eighteen, 
+        time_19: req.body.su_nineteen, 
+        time_20: req.body.su_twenty, 
+        time_21: req.body.su_twentyone, 
+        time_22: req.body.su_twentytwo, 
+        time_23: req.body.su_twentythree
+     });
+    }).then(function(req, res){
+    console.log(req.body);
         // res.json(dbRes);
-        res.redirect("/owner");
-    });
-});
+        res.redirect("/");
+        });
+  });
 
 router.get('/about', function (req, res) {
     if (req.user !== undefined) {
@@ -178,13 +342,13 @@ router.get('/owner', function (req, res) {
 });
 
 router.get('/api/locations', function (req, res) {
-    db.Owners.findAll({}).then(function (data) {
+    db.Properties.findAll({}).then(function (data) {
         res.json(data);
     });
 });
 
 router.get('/renter/property/:id', function (req, res) {
-    db.Owners.findOne({
+    db.Properties.findOne({
         where: {
             id: req.params.id
         }
@@ -198,7 +362,7 @@ router.get('/renter/property/:id', function (req, res) {
 router.post("/", function (req, res) {
     var address = req.body.address + ", " + req.body.city;
     geocoder.geocode(address, function (err, data) {
-        db.Owners.create({
+        db.Properties.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
             city: req.body.city,

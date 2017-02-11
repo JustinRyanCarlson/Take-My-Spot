@@ -1,10 +1,3 @@
-
-// $('#submitbtn').on('click', function() {
-//     for(i=0; i<req.body.row.length; i++){
-//         console.log('rows: ' + req.body.row[i]);
-//     }
-// });
-
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 

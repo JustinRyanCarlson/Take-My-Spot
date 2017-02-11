@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 // Associating Author with Posts
-                Users.hasMany(models.Owners, {
+                Users.hasMany(models.Properties, {
                     onDelete: "cascade"
                 });
             }
