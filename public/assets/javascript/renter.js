@@ -76,8 +76,7 @@ $(document.body).on('click', '.property', function() {
         date: date
     };
     $.post('/rentnow', id, function(successfulMSG) {
-        console.log(successfulMSG);
-        if (successfulMSG) {
+        if (successfulMSG === 'pass') {
             $(dateIden).val('');
             // open success modal
         } else {
