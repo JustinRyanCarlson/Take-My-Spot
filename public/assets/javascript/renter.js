@@ -78,9 +78,10 @@ $(document.body).on('click', '.property', function() {
     $.post('/rentnow', id, function(successfulMSG) {
         if (successfulMSG === 'pass') {
             $(dateIden).val('');
-            // open success modal
+            $("#success").modal();
         } else {
-            // open please choose another date model
+            $(dateIden).val('');
+            $("#fail").modal();
         }
     });
 });
