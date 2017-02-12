@@ -13,8 +13,13 @@ var script = {
     renterList: '<script src="javascript/renterList.js" type="text/javascript"></script>'
 };
 
+
+
 // ROUTES
 
+
+
+// --------------------------------------POST Routes--------------------------------
 router.post('/register', function(req, res) {
     db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
         if (err) {
@@ -34,14 +39,57 @@ router.post('/login', passport.authenticate('local', {
         res.redirect('/renter');
     });
 
+router.post("/login", function(req, res) {
+    console.log('success');
+});
+
+router.post("/", function(req, res) {
+    var address = req.body.address + ", " + req.body.city;
+    geocoder.geocode(address, function(err, data) {
+        db.Properties.create({
+            zipcode: req.body.zipcode,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            price: req.body.price,
+            longitude: data.results[0].geometry.location.lng,
+            latitude: data.results[0].geometry.location.lat,
+            UserId: req.user.id
+        }).then(function() {
+            res.redirect("/propertyList");
+        });
+    });
+});
+
+router.post('/rentnow', function(req, res) {
+    console.log(req.body.id, req.body.date);
+    db.Reservations.count({
+        where: {
+            PropertyId: req.body.id,
+            date: req.body.date
+        }
+    }).then(function(count) {
+        if (count === 1) {
+            res.send('fail');
+        } else {
+            db.Reservations.create({
+                UserId: req.user.id,
+                PropertyId: req.body.id,
+                date: req.body.date
+            }).then(function() {
+                res.send('pass');
+            });
+        }
+    });
+});
+
+
+
+// --------------------------------------GET Routes--------------------------------
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
         res.redirect('/login');
     });
-});
-
-router.post("/login", function(req, res) {
-    console.log('success');
 });
 
 router.get("/login", function(req, res) {
@@ -78,23 +126,7 @@ router.get('/renterList', function(req, res) {
     }
 });
 
-router.post("/", function(req, res) {
-    var address = req.body.address + ", " + req.body.city;
-    geocoder.geocode(address, function(err, data) {
-        db.Properties.create({
-            zipcode: req.body.zipcode,
-            address: req.body.address,
-            city: req.body.city,
-            state: req.body.state,
-            price: req.body.price,
-            longitude: data.results[0].geometry.location.lng,
-            latitude: data.results[0].geometry.location.lat,
-            UserId: req.user.id
-        }).then(function() {
-            res.redirect("/propertyList");
-        });
-    });
-});
+
 
 router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
@@ -181,18 +213,7 @@ router.get('/api/locations', function(req, res) {
 });
 
 
-router.post('/rentnow', function(req, res) {
-    console.log(req.body.id, req.body.date);
-    db.Reservations.findOne({
-        where: {
-            PropertyId: req.body.id,
-            date: req.body.date
-        }
-    }).then(function(data) {
-        // this gives all info in the DB for the entry clicked
-        console.log(data.dataValues);
-    });
-});
+
 
 
 router.get('/loginerror', function(req, res) {
@@ -202,7 +223,9 @@ router.get('/loginerror', function(req, res) {
     });
 });
 
-// --------------------------------------put this last---------------------------------
+
+
+// --------------------------------------Default USE Route--------------------------------
 router.use(function(req, res) {
     if (req.user !== undefined) {
         res.render('landingPage.handlebars', {

@@ -37,8 +37,6 @@ function initMap() {
             'Error: Your browser doesn\'t support geolocation.');
     }
 
-    // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-
     $.get('/api/locations', function(data) {
         // Create all markers for rentals
         var allMarkers = data;
@@ -75,9 +73,15 @@ $(document.body).on('click', '.property', function() {
     console.log(date);
     var id = {
         id: $(this).attr("data-id"),
-        date: null
+        date: date
     };
     $.post('/rentnow', id, function(successfulMSG) {
-
+        console.log(successfulMSG);
+        if (successfulMSG) {
+            $(dateIden).val('');
+            // open success modal
+        } else {
+            // open please choose another date model
+        }
     });
 });
