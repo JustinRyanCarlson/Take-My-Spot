@@ -56,10 +56,26 @@ router.get("/login", function(req, res) {
     }
 });
 
+router.post("/", function(req, res) {
+    var address = req.body.address + ", " + req.body.city;
+    geocoder.geocode(address, function(err, data) {
+        db.Properties.create({
+            zipcode: req.body.zipcode,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            price: req.body.price,
+            longitude: data.results[0].geometry.location.lng,
+            latitude: data.results[0].geometry.location.lat,
+            UserId: req.user.id
+        }).then(function() {
+            res.redirect("/propertyList");
+        });
+    });
+});
 
 router.get('/renter', function(req, res) {
     if (req.isAuthenticated()) {
-        console.log('user logged in', req.user);
         res.render('renter.handlebars', {
             title: 'TMS | Rentals',
             scripts: script.renter,
@@ -76,22 +92,20 @@ router.get('/renter', function(req, res) {
     }
 });
 
-router.post("/", function(req, res) {
+// router.post("/", function(req, res) {
+//     db.Properties.create({
+//         zipcode: req.body.zipcode,
+//         address: req.body.address,
+//         city: req.body.city,
+//         state: req.body.state,
+//         price: req.body.price,
+//         date: req.body.date,
+//         UserId: req.user.id
+//     }).then(function(dbRes) {
+//         res.redirect("/");
+//     });
+// });
 
-    db.Properties.create({
-        zipcode: req.body.zipcode,
-        address: req.body.address,
-        city: req.body.city,
-        state: req.body.state,
-        price: req.body.price,
-        date: req.body.date,
-        UserId: req.user.id
-
-    }).then(function(dbRes) {
-
-        res.redirect("/");
-    });
-});
 
 
 router.get('/about', function(req, res) {
@@ -184,25 +198,6 @@ router.post('/rentnow', function(req, res) {
     });
 });
 
-
-router.post("/", function(req, res) {
-    var address = req.body.address + ", " + req.body.city;
-    geocoder.geocode(address, function(err, data) {
-        console.log(data);
-        db.Properties.create({
-            zipcode: req.body.zipcode,
-            address: req.body.address,
-            city: req.body.city,
-            state: req.body.state,
-            price: req.body.price,
-            longitude: data.results[0].geometry.location.lng,
-            latitude: data.results[0].geometry.location.lat,
-            UserId: req.user
-        }).then(function(dbRes) {
-            res.redirect("/propertyList");
-        });
-    });
-});
 
 router.get('/loginerror', function(req, res) {
     res.render('loginerror.handlebars', {

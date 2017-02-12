@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Properties = sequelize.define("Properties", {
         price: {
-            type: DataTypes.DECIMAL(10, 2),
+            type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
                 len: [1]
@@ -42,10 +42,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
-        },
-        date: {
-            type: DataTypes.STRING,
-            allowNull: true
         }
     }, {
         // We're saying that we want our Author to have Posts
