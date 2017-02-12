@@ -55,7 +55,7 @@ router.get("/login", function(req, res) {
     }
 });
 
-// NOT DONE
+
 router.get('/renterList', function(req, res) {
     if (req.user !== undefined) {
         db.Reservations.findAll({

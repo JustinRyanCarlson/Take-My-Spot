@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="text-center">Property List</h3>
+    <h3 class="text-center">Rental List</h3>
     <hr>
     <div class="row">
         {{#each Owners}}
@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h5 class="text-center">Address: {{this.address}}, {{this.city}} {{this.state}} {{zipcode}}</h5>
+                    <h5 class="text-center">Rental Date: {{this.date}}</h5>
                     <h5 class="text-center">Price: ${{this.price}}/hr</h5>
                 </div>
             </div>
@@ -17,7 +18,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="text-center">
-                <button class="btn btn-primary" id="submit-button" data-toggle="modal" onClick="window.location='/owner'" ;>Add More Properties</button>
+                <button class="btn btn-primary" id="submit-button" data-toggle="modal" onClick="window.location='/owner'" ;>Rent More Properties</button>
             </div>
         </div>
     </div>
