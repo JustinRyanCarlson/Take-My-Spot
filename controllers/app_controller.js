@@ -173,7 +173,7 @@ router.get('/propertyList', function(req, res) {
             }
         }).then(function(ownerResp) {
             res.render('propertyList.handlebars', {
-                title: 'TMS | Property',
+                title: 'TMS | Property List',
                 scripts: script.propertyList,
                 user: "Welcome, " + req.user.email,
                 account_owner: "Properties",
@@ -193,7 +193,7 @@ router.get('/owner', function(req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('owner.handlebars', {
-            title: 'TMS | Owner',
+            title: 'TMS | Owner Form',
             scripts: script.owner,
             user: "Welcome, " + req.user.email,
             account_owner: "Properties",
