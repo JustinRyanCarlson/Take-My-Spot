@@ -29,7 +29,6 @@ npm install the following packages:
 npm install body-parser --save
 npm install express --save
 npm install express-handlebars --save
-npm install geocode --save
 npm install geocoder --save
 npm install mysql --save
 npm install sequelize --save
@@ -44,6 +43,7 @@ npm install serve-favicon --save
 * Node
 * Express
 * Handlebars
+* Geocoder
 * Google Map API
 * Body-parser
 * MVC
