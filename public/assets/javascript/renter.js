@@ -54,7 +54,7 @@ function initMap() {
                 return function() {
                     var content = "<div class=text-google><div class=text-center>Address: " + allMarkers[i].address + "</div>" +
                         "<div class=text-center>City: " + allMarkers[i].city + "</div>" +
-                        "<div class=text-center>Rate: $" + allMarkers[i].price + "/hr</div><br><div class=text-center>Choose a date: </div>" +
+                        "<div class=text-center>Rate: $" + allMarkers[i].price + "/day</div><br><div class=text-center>Choose a date: </div>" +
                         "<form><input id=" + allMarkers[i].id + " type=date></input></form><br>" +
                         "<div class=text-center><button class=property data-id=" + allMarkers[i].id + ">Book Now</button></div></div>";
                     infowindow.setContent(content);
@@ -70,7 +70,7 @@ function initMap() {
 $(document.body).on('click', '.property', function() {
     var dateIden = "#" + $(this).attr("data-id");
     var date = $(dateIden).val();
-    console.log(date);
+
     var id = {
         id: $(this).attr("data-id"),
         date: date

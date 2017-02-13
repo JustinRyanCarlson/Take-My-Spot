@@ -6,6 +6,22 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        },
+        revAddress: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        revCity: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        revPrice: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        revZipcode: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         // We're saying that we want our Author to have Posts
