@@ -4,6 +4,7 @@ Take-My-Spot allows users who wish to travel to parts of the city that have scar
 Take-MY-Spot also allows the user to rent out their underutilized parking spot. Allowing you to be both owner and renter.
 
 # Screenshots
+![Alt text] (/screenshots/screenshot1.png?raw=true)
 
 # Technology Used
 * Node
