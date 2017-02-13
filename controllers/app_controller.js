@@ -72,12 +72,23 @@ router.post('/rentnow', function(req, res) {
         if (count === 1) {
             res.send('fail');
         } else {
-            db.Reservations.create({
-                UserId: req.user.id,
-                PropertyId: req.body.id,
-                date: req.body.date
-            }).then(function() {
-                res.send('pass');
+            db.Properties.findOne({
+                where: {
+                    id: req.body.id
+                }
+            }).then(function(data) {
+                console.log(data.dataValues.address);
+                db.Reservations.create({
+                    UserId: req.user.id,
+                    PropertyId: req.body.id,
+                    date: req.body.date,
+                    revAddress: data.dataValues.address,
+                    revCity: data.dataValues.city,
+                    revPrice: data.dataValues.price,
+                    revZipcode: data.dataValues.zipcode
+                }).then(function() {
+                    res.send('pass');
+                });
             });
         }
     });
