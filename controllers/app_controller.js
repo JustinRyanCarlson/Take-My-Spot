@@ -20,12 +20,13 @@ var script = {
 
 
 // --------------------------------------POST Routes--------------------------------
-router.post('/register', function(req, res) {
-    db.Users.register(req.body.email.toLowerCase(), req.body.password, function(err, user) {
+router.post('/register', function (req, res) {
+    db.Users.register(req.body.email.toLowerCase(), req.body.password, function (err, user) {
         if (err) {
-            return res.json(err);
+            console.log(err);
+            res.redirect('/login');
         } else {
-            passport.authenticate('local')(req, res, function() {
+            passport.authenticate('local')(req, res, function () {
                 res.redirect('/renter');
             });
         }
@@ -33,19 +34,19 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local', {
-        failureRedirect: '/login'
-    }),
-    function(req, res) {
+    failureRedirect: '/login'
+}),
+    function (req, res) {
         res.redirect('/renter');
     });
 
-router.post("/login", function(req, res) {
+router.post("/login", function (req, res) {
     console.log('success');
 });
 
-router.post("/", function(req, res) {
+router.post("/", function (req, res) {
     var address = req.body.address + ", " + req.body.city;
-    geocoder.geocode(address, function(err, data) {
+    geocoder.geocode(address, function (err, data) {
         db.Properties.create({
             zipcode: req.body.zipcode,
             address: req.body.address,
@@ -55,20 +56,20 @@ router.post("/", function(req, res) {
             longitude: data.results[0].geometry.location.lng,
             latitude: data.results[0].geometry.location.lat,
             UserId: req.user.id
-        }).then(function() {
+        }).then(function () {
             res.redirect("/propertyList");
         });
     });
 });
 
-router.post('/rentnow', function(req, res) {
+router.post('/rentnow', function (req, res) {
     console.log(req.body.id, req.body.date);
     db.Reservations.count({
         where: {
             PropertyId: req.body.id,
             date: req.body.date
         }
-    }).then(function(count) {
+    }).then(function (count) {
         if (count === 1) {
             res.send('fail');
         } else {
@@ -76,7 +77,7 @@ router.post('/rentnow', function(req, res) {
                 where: {
                     id: req.body.id
                 }
-            }).then(function(data) {
+            }).then(function (data) {
                 console.log(data.dataValues.address);
                 db.Reservations.create({
                     UserId: req.user.id,
@@ -86,7 +87,7 @@ router.post('/rentnow', function(req, res) {
                     revCity: data.dataValues.city,
                     revPrice: data.dataValues.price,
                     revZipcode: data.dataValues.zipcode
-                }).then(function() {
+                }).then(function () {
                     res.send('pass');
                 });
             });
@@ -97,13 +98,13 @@ router.post('/rentnow', function(req, res) {
 
 
 // --------------------------------------GET Routes--------------------------------
-router.get('/logout', function(req, res) {
-    req.session.destroy(function(err) {
+router.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
         res.redirect('/login');
     });
 });
 
-router.get("/login", function(req, res) {
+router.get("/login", function (req, res) {
     if (req.user !== undefined) {
         res.redirect('/renter');
     } else {
@@ -115,13 +116,13 @@ router.get("/login", function(req, res) {
 });
 
 
-router.get('/renterList', function(req, res) {
+router.get('/renterList', function (req, res) {
     if (req.user !== undefined) {
         db.Reservations.findAll({
             where: {
                 UserId: req.user.id
             }
-        }).then(function(ownerResp) {
+        }).then(function (ownerResp) {
             res.render('renterList.handlebars', {
                 title: 'TMS | Rental List',
                 scripts: script.renterList,
@@ -139,7 +140,7 @@ router.get('/renterList', function(req, res) {
 
 
 
-router.get('/renter', function(req, res) {
+router.get('/renter', function (req, res) {
     if (req.isAuthenticated()) {
         res.render('renter.handlebars', {
             title: 'TMS | Rentals',
@@ -156,7 +157,7 @@ router.get('/renter', function(req, res) {
 });
 
 
-router.get('/about', function(req, res) {
+router.get('/about', function (req, res) {
     if (req.user !== undefined) {
         res.render('about.handlebars', {
             title: 'TMS | About',
@@ -176,13 +177,13 @@ router.get('/about', function(req, res) {
 
 
 
-router.get('/propertyList', function(req, res) {
+router.get('/propertyList', function (req, res) {
     if (req.user !== undefined) {
         db.Properties.findAll({
             where: {
                 UserId: req.user.id
             }
-        }).then(function(ownerResp) {
+        }).then(function (ownerResp) {
             res.render('propertyList.handlebars', {
                 title: 'TMS | Property List',
                 scripts: script.propertyList,
@@ -200,7 +201,7 @@ router.get('/propertyList', function(req, res) {
 });
 
 
-router.get('/owner', function(req, res) {
+router.get('/owner', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('user logged in', req.user);
         res.render('owner.handlebars', {
@@ -217,8 +218,8 @@ router.get('/owner', function(req, res) {
     }
 });
 
-router.get('/api/locations', function(req, res) {
-    db.Properties.findAll({}).then(function(data) {
+router.get('/api/locations', function (req, res) {
+    db.Properties.findAll({}).then(function (data) {
         res.json(data);
     });
 });
@@ -227,7 +228,7 @@ router.get('/api/locations', function(req, res) {
 
 
 
-router.get('/loginerror', function(req, res) {
+router.get('/loginerror', function (req, res) {
     res.render('loginerror.handlebars', {
         title: 'TMS | Error'
 
@@ -237,7 +238,7 @@ router.get('/loginerror', function(req, res) {
 
 
 // --------------------------------------Default USE Route--------------------------------
-router.use(function(req, res) {
+router.use(function (req, res) {
     if (req.user !== undefined) {
         res.render('landingPage.handlebars', {
             title: 'TMS | Welcome',
