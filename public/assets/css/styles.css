@@ -1,3 +1,4 @@
+
 /*
 
 Landing Zero theme - A free landing page theme from BootstrapZero
@@ -125,7 +126,7 @@ footer {
     transition: all .4s;
 }
 
-.navbar-header > .navbar-brand {
+.navbar-header>.navbar-brand {
     font-family: 'Questrial', 'Helvetica Neue', Arial, sans-serif;
     color: #9c27b0;
     padding: 15px;
@@ -134,8 +135,8 @@ footer {
     transition: padding .2s ease-in;
 }
 
-.navbar-header > .navbar-brand:hover,
-.navbar-header > .navbar-brand:focus {
+.navbar-header>.navbar-brand:hover,
+.navbar-header>.navbar-brand:focus {
     color: #8b27b0;
 }
 
@@ -149,7 +150,7 @@ footer {
     border-color: transparent;
 }
 
-.navbar-default .nav > li>a,
+.navbar-default .nav>li>a,
 .navbar-default .nav>li>a:focus {
     text-transform: uppercase;
     font-size: 13px;
@@ -157,18 +158,18 @@ footer {
     color: #eee;
 }
 
-.navbar-default .nav > li>a:hover,
+.navbar-default .nav>li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
     color: #9c27b0;
 }
 
-.navbar-default .nav > li.active>a,
+.navbar-default .nav>li.active>a,
 .navbar-default .nav>li.active>a:focus {
     color: #9c27b0 !important;
     background-color: transparent;
 }
 
-.navbar-default .nav > li.active>a:hover,
+.navbar-default .nav>li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
     background-color: transparent;
 }
@@ -179,7 +180,7 @@ footer {
         background-color: #2D2D2D;
         min-height: 60px;
     }
-    .navbar-header > .navbar-brand {
+    .navbar-header>.navbar-brand {
         color: rgba(255, 255, 255, 0.7);
         padding: 19px;
     }
@@ -187,14 +188,14 @@ footer {
     .navbar-default .navbar-header .navbar-brand:focus {
         color: #f4f4f4;
     }
-    .navbar-default .nav > li>a,
+    .navbar-default .nav>li>a,
     .navbar-default .nav>li>a:focus {
         color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         letter-spacing: 1.1px;
         text-shadow: 1px 1px 1px rgba(60, 60, 60, 0.7);
     }
-    .navbar-default .nav > li>a:hover,
+    .navbar-default .nav>li>a:hover,
     .navbar-default .nav>li>a:focus:hover {
         color: #fefefe;
     }
@@ -212,12 +213,12 @@ footer {
     .navbar-default.affix .navbar-header .navbar-brand:focus {
         color: #8b27b0;
     }
-    .navbar-default.affix .nav > li>a,
+    .navbar-default.affix .nav>li>a,
     .navbar-default.affix .nav>li>a:focus {
         color: #ddd;
         text-shadow: 1px 1px 1px rgba(30, 30, 30, 0.7);
     }
-    .navbar-default.affix .nav > li>a:hover,
+    .navbar-default.affix .nav>li>a:hover,
     .navbar-default.affix .nav>li>a:focus:hover {
         color: #9c27b0;
     }
@@ -230,7 +231,7 @@ header {
     color: #fff;
     width: 100%;
     background-color: #c9c9c9;
-    /*background-image: url('https://splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-Slate-Stone-Xeromatic-1440x953.jpg');*/
+    background-image: url('https://static.pexels.com/photos/4097/city-cars-traffic-lights.jpeg');
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -407,7 +408,7 @@ textarea {
     transition: all 300ms ease-in-out;
 }
 
-.no-gutter > [class*=col-] {
+.no-gutter>[class*=col-] {
     padding-right: 0;
     padding-left: 0;
 }
@@ -426,7 +427,7 @@ textarea {
 .btn-default.focus,
 .btn-default:active,
 .btn-default.active,
-.open > .dropdown-toggle.btn-default {
+.open>.dropdown-toggle.btn-default {
     border-color: #ededed;
     color: #222;
     background-color: #f2f2f2;
@@ -435,7 +436,7 @@ textarea {
 
 .btn-default:active,
 .btn-default.active,
-.open > .dropdown-toggle.btn-default {
+.open>.dropdown-toggle.btn-default {
     background-image: none;
 }
 
